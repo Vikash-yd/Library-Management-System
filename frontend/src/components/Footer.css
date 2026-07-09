@@ -1,0 +1,39 @@
+.footer {
+  background: linear-gradient(
+    to top,
+    #020617,
+    #0f172a,
+    #1e293b
+  );
+
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+/* Glass box inside footer */
+.footer-content {
+  max-width: 800px;
+  margin: auto;
+
+  background: linear-gradient(
+    135deg,
+    rgba(56, 189, 248, 0.1),
+    rgba(30, 41, 59, 0.2),
+    rgba(249, 115, 22, 0.1)
+  );
+
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 25px;
+
+  box-shadow: 
+    0 8px 32px rgba(0,0,0,0.3),
+    inset 0 1px 1px rgba(255,255,255,0.05);
+
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-links span:hover {
+  color: #38bdf8;
+}

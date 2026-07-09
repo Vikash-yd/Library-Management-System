@@ -1,0 +1,676 @@
+/* ===========================================
+   NAVBAR
+=========================================== */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+
+  padding: 18px 40px;
+
+  background:
+    linear-gradient(rgba(2, 6, 23, 0.92),
+    rgba(15, 23, 42, 0.92));
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border-bottom: 1px solid rgba(255,255,255,.08);
+
+  box-shadow:
+      0 10px 30px rgba(0,0,0,.25);
+
+  transition: .3s ease;
+}
+
+/* ===========================================
+   LOGO
+=========================================== */
+
+.logo{
+
+  color:#fff;
+
+  font-size:2rem;
+
+  font-weight:800;
+
+  letter-spacing:.5px;
+
+  cursor:pointer;
+
+  user-select:none;
+
+  white-space:nowrap;
+
+}
+
+.logo span{
+
+  color:#f97316;
+
+}
+
+/* ===========================================
+   SEARCH CONTAINER
+=========================================== */
+
+.search-container{
+
+  position:relative;
+
+  flex:1;
+
+  max-width:650px;
+
+  display:flex;
+
+  align-items:center;
+
+}
+
+/* ===========================================
+   SEARCH INPUT
+=========================================== */
+
+.search-container input{
+
+  width:100%;
+
+  padding:15px 60px 15px 22px;
+
+  border-radius:40px;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  outline:none;
+
+  background:rgba(255,255,255,.08);
+
+  backdrop-filter:blur(14px);
+
+  color:white;
+
+  font-size:.95rem;
+
+  transition:.3s;
+
+}
+
+.search-container input::placeholder{
+
+  color:#cbd5e1;
+
+}
+
+.search-container input:focus{
+
+  border-color:#f97316;
+
+  box-shadow:
+      0 0 0 3px rgba(249,115,22,.12),
+      0 10px 25px rgba(249,115,22,.15);
+
+}
+
+/* ===========================================
+   SEARCH BUTTON
+=========================================== */
+
+.search-btn{
+
+  position:absolute;
+
+  right:8px;
+
+  width:42px;
+
+  height:42px;
+
+  border:none;
+
+  border-radius:12px;
+
+  cursor:pointer;
+
+  background:#f97316;
+
+  color:white;
+
+  font-size:1rem;
+
+  transition:.3s;
+
+}
+
+.search-btn:hover{
+
+  background:#ea580c;
+
+  transform:translateY(-2px);
+
+}
+
+/* ===========================================
+   SEARCH DROPDOWN
+=========================================== */
+
+.search-filters{
+
+  position:absolute;
+
+  top:110%;
+
+  left:0;
+
+  width:100%;
+
+  padding:20px;
+
+  border-radius:22px;
+
+  background:
+      linear-gradient(
+      rgba(2,6,23,.96),
+      rgba(15,23,42,.97));
+
+  backdrop-filter:blur(18px);
+
+  border:1px solid rgba(255,255,255,.08);
+
+  box-shadow:
+      0 20px 45px rgba(0,0,0,.35);
+
+  animation:fadeDown .25s ease;
+
+  z-index:999;
+
+}
+
+/* ===========================================
+   RECENT SEARCH
+=========================================== */
+
+.recent-header{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:14px;
+
+}
+
+.recent-header span{
+
+  color:white;
+
+  font-weight:700;
+
+}
+
+.clear-btn{
+
+  border:none;
+
+  background:none;
+
+  color:#f97316;
+
+  cursor:pointer;
+
+  font-weight:600;
+
+  transition:.3s;
+
+}
+
+.clear-btn:hover{
+
+  color:#fb923c;
+
+}
+
+.recent-search-list{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:10px;
+
+}
+
+.recent-search-item{
+
+  padding:12px 15px;
+
+  border:none;
+
+  border-radius:14px;
+
+  background:rgba(255,255,255,.05);
+
+  color:#e2e8f0;
+
+  text-align:left;
+
+  cursor:pointer;
+
+  transition:.25s;
+
+}
+
+.recent-search-item:hover{
+
+  background:rgba(249,115,22,.14);
+
+  transform:translateX(4px);
+
+}
+
+.search-filters hr{
+
+  border:none;
+
+  border-top:1px solid rgba(255,255,255,.08);
+
+  margin:18px 0;
+
+}
+
+/* ===========================================
+   ANIMATION
+=========================================== */
+
+@keyframes fadeDown{
+
+from{
+
+opacity:0;
+
+transform:translateY(-10px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+/* ===========================================
+   FILTER CHIPS
+=========================================== */
+
+.chip-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.filter-chip {
+
+  padding: 10px 18px;
+
+  border-radius: 30px;
+
+  border: 1px solid rgba(255,255,255,.08);
+
+  background: rgba(255,255,255,.05);
+
+  color: white;
+
+  cursor: pointer;
+
+  font-size: .9rem;
+
+  font-weight: 600;
+
+  transition: all .3s ease;
+}
+
+.filter-chip:hover {
+
+  background: rgba(249,115,22,.14);
+
+  border-color: rgba(249,115,22,.3);
+
+  transform: translateY(-2px);
+
+}
+
+.active-chip {
+
+  background: #f97316;
+
+  color: white;
+
+  border: none;
+
+  box-shadow: 0 8px 20px rgba(249,115,22,.25);
+
+}
+
+.active-chip:hover {
+
+  background: #ea580c;
+
+}
+
+/* ===========================================
+   NAV LINKS
+=========================================== */
+
+.nav-links {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 28px;
+
+  list-style: none;
+
+  margin: 0;
+
+  padding: 0;
+
+}
+
+.nav-links li {
+
+  list-style: none;
+
+}
+
+.nav-links a {
+
+  position: relative;
+
+  text-decoration: none;
+
+  color: #f8fafc;
+
+  font-size: .96rem;
+
+  font-weight: 600;
+
+  transition: .3s ease;
+
+}
+
+.nav-links a:hover {
+
+  color: #f97316;
+
+}
+
+.nav-links a.active {
+
+  color: #f97316;
+
+}
+
+.nav-links a::after {
+
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+
+  bottom: -6px;
+
+  width: 0;
+
+  height: 2px;
+
+  background: #f97316;
+
+  transition: .3s;
+
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+
+  width: 100%;
+
+}
+
+/* ===========================================
+   USER MENU
+=========================================== */
+
+.user-menu {
+
+  position: relative;
+
+}
+
+.user-name {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 10px 16px;
+
+  border-radius: 30px;
+
+  cursor: pointer;
+
+  background: rgba(255,255,255,.06);
+
+  border: 1px solid rgba(255,255,255,.08);
+
+  color: white;
+
+  font-weight: 600;
+
+  transition: .3s ease;
+
+}
+
+.user-name:hover {
+
+  background: rgba(249,115,22,.15);
+
+  border-color: rgba(249,115,22,.35);
+
+}
+
+.dropdown {
+
+  position: absolute;
+
+  top: 115%;
+
+  right: 0;
+
+  width: 180px;
+
+  padding: 12px;
+
+  border-radius: 18px;
+
+  background: linear-gradient(
+      rgba(2,6,23,.96),
+      rgba(15,23,42,.98)
+  );
+
+  backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255,255,255,.08);
+
+  box-shadow: 0 15px 40px rgba(0,0,0,.35);
+
+  animation: fadeDown .25s ease;
+
+}
+
+.dropdown button {
+
+  width: 100%;
+
+  padding: 12px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  background: rgba(255,255,255,.05);
+
+  color: white;
+
+  font-weight: 600;
+
+  transition: .3s;
+
+}
+
+.dropdown button:hover {
+
+  background: #ef4444;
+
+}
+
+/* ===========================================
+   RESPONSIVE
+=========================================== */
+
+@media (max-width: 1100px) {
+
+  .navbar {
+
+    flex-wrap: wrap;
+
+    padding: 18px 24px;
+
+    gap: 18px;
+
+  }
+
+  .logo {
+
+    width: 100%;
+
+    text-align: center;
+
+  }
+
+  .search-container {
+
+    order: 3;
+
+    width: 100%;
+
+    max-width: none;
+
+  }
+
+  .nav-links {
+
+    width: 100%;
+
+    justify-content: center;
+
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .navbar {
+
+    padding: 15px;
+
+  }
+
+  .logo {
+
+    font-size: 1.6rem;
+
+  }
+
+  .search-container input {
+
+    font-size: .9rem;
+
+    padding: 14px 55px 14px 18px;
+
+  }
+
+  .search-btn {
+
+    width: 40px;
+
+    height: 40px;
+
+  }
+
+  .nav-links {
+
+    gap: 18px;
+
+    flex-wrap: wrap;
+
+  }
+
+  .filter-chip {
+
+    padding: 8px 15px;
+
+    font-size: .85rem;
+
+  }
+
+  .search-filters {
+
+    padding: 16px;
+
+  }
+
+}
+
+@media (max-width: 520px) {
+
+  .nav-links {
+
+    gap: 14px;
+
+    font-size: .9rem;
+
+  }
+
+  .user-name {
+
+    padding: 9px 14px;
+
+    font-size: .9rem;
+
+  }
+
+  .dropdown {
+
+    width: 160px;
+
+  }
+
+}

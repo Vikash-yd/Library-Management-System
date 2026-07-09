@@ -1,0 +1,40 @@
+package com.SoulSpace.backend.Models;
+
+public enum EventTag {
+
+
+    TRENDING,
+    POPULAR,
+    RECOMMENDED,
+    LIVE,
+
+
+    BEGINNER_FRIENDLY,
+    ADVANCED,
+    EXAM_FOCUS,
+    DOUBT_SOLVING,
+    INTERACTIVE,
+    SELF_STUDY,
+    PRODUCTIVITY,
+
+
+    GROUP_DISCUSSION,
+    TEAMWORK,
+    BRAINSTORMING,
+    CREATIVE_THINKING,
+    PROJECT_BASED,
+
+
+    FOCUSED_LEARNERS,
+    DEEP_WORK,
+    QUIET_SPACE,
+    CALM_SESSION,
+    WELLNESS,
+    RELAXING,
+
+
+    OPEN_FOR_ALL,
+    LIMITED_SEATS,
+    IMMEDIATE_JOIN,
+    HIGH_DEMAND
+}
