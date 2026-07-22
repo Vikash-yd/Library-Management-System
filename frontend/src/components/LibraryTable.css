@@ -1,0 +1,538 @@
+/* ===========================
+ COMMON SEAT
+=========================== */
+
+.chair-seat {
+
+    width:55px;
+    height:42px;
+
+    font-size:11px;
+
+    border-radius:8px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:.2s ease;
+
+}
+
+
+.chair-seat:hover{
+    transform:scale(1.08);
+}
+
+
+.available-seat{
+
+    background:#22c55e;
+
+}
+
+
+.selected-seat{
+
+    background:#f97316;
+
+}
+
+
+.booked-seat{
+
+    background:#ef4444;
+
+    cursor:not-allowed;
+
+}
+
+
+
+
+/* ===========================
+ PREMIUM TABLE
+=========================== */
+
+
+.premium-table{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+
+
+.table-seat-row{
+
+    display:flex;
+
+    gap:30px;
+
+}
+
+
+
+
+.long-table{
+
+    width:210px;
+
+    height:75px;
+
+
+    background:
+
+    linear-gradient(
+        90deg,
+        #9a6338,
+        #5b3518
+    );
+
+
+    border-radius:12px;
+
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+
+    box-shadow:
+    0 8px 15px rgba(0,0,0,.25);
+
+}
+
+
+
+
+
+/* ===========================
+ RESEARCH TABLE
+=========================== */
+
+
+.research-table {
+
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:12px;
+
+
+}
+
+
+
+.research-top,
+.research-bottom {
+
+
+    display:flex;
+
+    gap:65px;
+
+
+}
+
+
+
+.research-middle {
+
+
+    display:flex;
+
+    align-items:center;
+
+    gap:40px;
+
+
+}
+
+
+
+.research-left,
+.research-right {
+
+
+    display:flex;
+
+    align-items:center;
+
+
+}
+
+
+
+
+.research-body {
+
+
+    width:190px;
+
+    height:80px;
+
+
+    background:
+
+    linear-gradient(
+        90deg,
+        #9a6338,
+        #5b3518
+    );
+
+
+    border-radius:12px;
+
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:700;
+
+
+    box-shadow:
+    0 8px 15px rgba(0,0,0,.25);
+
+}
+
+
+
+
+
+/* ===========================
+ SQUARE TABLE
+=========================== */
+
+
+.square-table{
+
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:10px;
+
+
+}
+
+
+
+.square-middle{
+
+
+    display:flex;
+
+    align-items:center;
+
+    gap:25px;
+
+
+}
+
+
+
+.square-body{
+
+
+    width:140px;
+
+    height:140px;
+
+
+    background:
+
+    linear-gradient(
+        90deg,
+        #9a6338,
+        #5b3518
+    );
+
+
+    border-radius:12px;
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+
+    box-shadow:
+    0 8px 15px rgba(0,0,0,.25);
+
+
+}
+
+
+
+
+
+
+
+/* ===========================
+ PREMIUM HALL GRID
+=========================== */
+
+
+.tables-area {
+
+
+    display:grid;
+
+
+    /* 3 TABLES IN ONE ROW */
+
+    grid-template-columns:
+    repeat(3, 320px);
+
+
+
+    column-gap:120px;
+
+
+    row-gap:160px;
+
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+
+    padding:100px 50px;
+
+
+
+    width:100%;
+
+
+    box-sizing:border-box;
+
+
+}
+
+
+
+
+
+/* individual table breathing space */
+
+
+.premium-table,
+.research-table,
+.square-table{
+
+
+    margin:20px;
+
+
+}
+
+
+
+
+
+
+
+/* ===========================
+ CHARGING ICON
+=========================== */
+
+
+.chair-seat {
+
+
+    position:relative;
+
+    overflow:visible;
+
+
+}
+
+
+
+.charging-icon{
+
+
+    position:absolute;
+
+
+    top:-8px;
+
+    right:-8px;
+
+
+    width:18px;
+
+    height:18px;
+
+
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #FFE082,
+        #FFB74D
+    );
+
+
+
+    border:2px solid #F59E0B;
+
+
+    border-radius:4px;
+
+
+
+    color:#8A4B00;
+
+
+
+    font-size:11px;
+
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+
+    box-shadow:
+
+
+    0 2px 6px rgba(245,158,11,.35),
+
+
+    0 0 8px rgba(255,193,7,.25);
+
+
+
+    z-index:20;
+
+
+}
+
+
+
+
+
+
+
+/* ===========================
+ RESPONSIVE
+=========================== */
+
+
+@media(max-width:1400px){
+
+
+.tables-area{
+
+
+    grid-template-columns:
+    repeat(3,280px);
+
+
+
+    column-gap:80px;
+
+
+    row-gap:140px;
+
+
+}
+
+
+}
+
+
+
+
+
+@media(max-width:1100px){
+
+
+.tables-area{
+
+
+    grid-template-columns:
+    repeat(2,300px);
+
+
+
+    column-gap:80px;
+
+
+    row-gap:120px;
+
+
+}
+
+
+}
+
+
+
+
+
+@media(max-width:700px){
+
+
+.tables-area{
+
+
+    grid-template-columns:1fr;
+
+
+    padding:30px;
+
+
+}
+
+
+}

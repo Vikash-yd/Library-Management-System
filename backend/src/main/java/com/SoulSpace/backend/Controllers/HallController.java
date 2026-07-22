@@ -2,7 +2,8 @@ package com.SoulSpace.backend.Controllers;
 
 import com.SoulSpace.backend.Models.Hall;
 import com.SoulSpace.backend.Services.HallServices;
-import com.SoulSpace.backend.Services.HallServices;
+import com.SoulSpace.backend.Dtos.HallLayoutDTO;
+import com.SoulSpace.backend.Services.HallLayoutService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,11 +13,17 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class HallController {
 
-    private final HallServices hallService;
+     private final HallServices hallService;
+private final HallLayoutService hallLayoutService;
 
-    public HallController(HallServices hallService) {
-        this.hallService = hallService;
-    }
+
+public HallController(
+        HallServices hallService,
+        HallLayoutService hallLayoutService
+) {
+    this.hallService = hallService;
+    this.hallLayoutService = hallLayoutService;
+}
 
     @GetMapping
     public List<Hall> getAllHalls() {
@@ -57,4 +64,10 @@ public class HallController {
     public void deleteHall(@PathVariable Long id) {
         hallService.deleteHall(id);
     }
+    @GetMapping("/layout")
+public List<HallLayoutDTO> getHallLayout(){
+
+    return hallLayoutService.getHallLayout();
+
+}
 }

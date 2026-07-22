@@ -20,8 +20,8 @@ public class HallServices {
     }
 
     public List<Hall> getActiveHalls() {
-        return hallRepository.findByActiveTrue();
-    }
+    return hallRepository.findAll();
+}
 
     public Hall getHallById(Long id) {
         return hallRepository.findById(id)

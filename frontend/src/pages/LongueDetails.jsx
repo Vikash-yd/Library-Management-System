@@ -73,50 +73,65 @@ function LongueDetails() {
     );
   }
 
-  return (
-    <>
-      <Navbar />
+return (
+  <>
+    <Navbar />
 
-      <div className="longue-details-page">
-        <div className="details-wrapper">
+    <div className="longue-details-page">
+      <div className="details-wrapper">
 
-          <section className="details-hero-card">
-            <div className="details-hero-content">
+        <section className="details-hero-card">
+          <div className="details-hero-content">
 
-              <p className="details-small-label">
-                SMART LIBRARY EXPERIENCE
-              </p>
+            <p className="details-small-label">
+              SMART LIBRARY EXPERIENCE
+            </p>
 
-              <h1>{lounge.title}</h1>
+            <h1>{lounge.title}</h1>
 
-              <p className="details-description">
-                {lounge.description}
-              </p>
+            <p className="details-description">
+              {lounge.description}
+            </p>
 
-            </div>
-          </section>
+          </div>
+        </section>
 
-          <section className="sessions-section">
 
-            <div className="section-top">
-              <h2>Events</h2>
+        <section className="sessions-section">
 
-              <button onClick={() => navigate("/activities")}>
-                View Activities
-              </button>
-            </div>
+          <div className="section-top">
+            <h2>Events</h2>
 
-            <div className="session-grid">
+            <button onClick={() => navigate("/dashboard?tab=events")}>
+              View My Events
+            </button>
 
-              {events.length === 0 ? (
-                <h3>No Events Available</h3>
-              ) : (
-                events.map((event) => (
+          </div>
+
+
+          <div className="session-grid">
+
+            {events.length === 0 ? (
+              <h3>No Events Available</h3>
+            ) : (
+
+              events.map((event) => {
+
+                console.log("EVENT DATA:", event);
+
+                return (
+
                   <div className="session-card" key={event.id}>
 
-                    <h3>{event.title}</h3>
+                    <h3>
+                      {event.title}
+                    </h3>
 
-                    <p>{event.description}</p>
+
+                    <p>
+                      {event.description}
+                    </p>
+
 
                     {event.eventDate && (
                       <p>
@@ -124,11 +139,13 @@ function LongueDetails() {
                       </p>
                     )}
 
+
                     {event.eventTime && (
                       <p>
                         <strong>Time:</strong> {event.eventTime}
                       </p>
                     )}
+
 
                     {event.hostName && (
                       <p>
@@ -136,11 +153,13 @@ function LongueDetails() {
                       </p>
                     )}
 
+
                     {event.venue && (
                       <p>
                         <strong>Venue:</strong> {event.venue}
                       </p>
                     )}
+
 
                     <button
                       onClick={() =>
@@ -150,32 +169,50 @@ function LongueDetails() {
                       View Event
                     </button>
 
+
                   </div>
-                ))
-              )}
 
-            </div>
+                );
 
-          </section>
+              })
 
-          <div className="bottom-btn-row">
-
-            <button onClick={() => navigate("/longues")}>
-              Back to Spaces
-            </button>
-
-            <button onClick={() => navigate("/activities")}>
-              My Activities
-            </button>
+            )}
 
           </div>
 
+
+        </section>
+
+
+
+        <div className="bottom-btn-row">
+
+
+          <button
+            onClick={() => navigate("/longues")}
+          >
+            Back to Spaces
+          </button>
+
+
+
+          <button
+            onClick={() => navigate("/dashboard?tab=events")}
+          >
+            My Dashboard
+          </button>
+
+
         </div>
+
+
       </div>
+    </div>
 
-      <Footer />
-    </>
-  );
+
+    <Footer />
+
+  </>
+);
 }
-
 export default LongueDetails;

@@ -60,7 +60,7 @@
 /* SEAT GRID GLASS UPGRADE      */
 /* ============================= */
 
-.seat-grid {
+/* {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
   gap: 12px;
@@ -74,11 +74,11 @@
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);*/
 }
 
 /* SEAT BOX (GLASS STYLE) */
-.seat-box {
+/*.seat-box {
   width: 70px;
   height: 45px;
 
@@ -96,7 +96,7 @@
   -webkit-backdrop-filter: blur(10px);
 
   transition: all 0.25s ease;
-}
+}*/
 
 /* AVAILABLE */
 .seat-box.available {
@@ -215,7 +215,7 @@
    SEAT GRID
 ======================================= */
 
-.seat-grid{
+/*{
 
     max-width:1200px;
 
@@ -241,13 +241,13 @@
     box-shadow:
         0 20px 45px rgba(0,0,0,.30);
 
-}
+}*/
 
 /* ===========================
         SEAT
 =========================== */
 
-.seat-box{
+/*.seat-box{
 
     width:75px;
     height:50px;
@@ -274,7 +274,7 @@
 
     user-select:none;
 
-}
+}*/
 
 /* AVAILABLE */
 
@@ -755,4 +755,1032 @@
 .popup-error {
   background: #dc2626 !important;
   color: #fff;
+}
+/* =========================================
+   PAGE CONTAINER
+========================================= */
+
+.seat-page,
+.books-page {
+    width:100%;
+    min-height:100vh;
+}
+
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.seat-header-box,
+.page-hero {
+
+    min-height:350px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:100px 20px 60px;
+
+    background:
+    linear-gradient(
+        rgba(15,23,42,.75),
+        rgba(15,23,42,.9)
+    );
+
+}
+
+
+.seat-title,
+.page-title{
+
+    font-size:48px;
+
+    color:white;
+
+    font-weight:800;
+
+}
+
+
+.seat-subtitle,
+.page-subtitle{
+
+    color:#f97316;
+
+    letter-spacing:3px;
+
+    font-weight:700;
+
+}
+
+
+
+.seat-description,
+.page-description{
+
+    color:#cbd5e1;
+
+    font-size:18px;
+
+}
+
+
+
+/* =========================================
+   CONTROLS
+========================================= */
+
+
+.hall-controls-box{
+
+    max-width:1100px;
+
+    margin:40px auto;
+
+    padding:25px;
+
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+
+
+
+    background:
+    rgba(255,255,255,.06);
+
+
+    border:
+
+    1px solid rgba(255,255,255,.12);
+
+
+    border-radius:20px;
+
+
+    backdrop-filter:blur(15px);
+
+
+}
+
+
+.hall-controls-box select,
+.hall-controls-box input{
+
+
+    padding:12px 18px;
+
+
+    border-radius:12px;
+
+
+    background:#0f172a;
+
+
+    color:white;
+
+
+    border:1px solid rgba(255,255,255,.2);
+
+
+}
+
+
+
+
+/* =========================================
+   STATS
+========================================= */
+
+
+.hall-stats{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+
+
+.stat-card{
+
+
+padding:18px 25px;
+
+
+background:
+
+rgba(255,255,255,.08);
+
+
+border-radius:15px;
+
+
+text-align:center;
+
+
+color:white;
+
+
+}
+
+
+.stat-label{
+
+display:block;
+
+color:#cbd5e1;
+
+}
+
+
+
+
+
+/* =========================================
+   LEGEND
+========================================= */
+
+
+.legend-row{
+
+
+display:flex;
+
+
+justify-content:center;
+
+
+gap:35px;
+
+
+margin:30px;
+
+
+color:white;
+
+
+}
+
+
+.legend-row div{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+}
+
+
+.legend-box{
+
+
+width:22px;
+
+height:22px;
+
+border-radius:6px;
+
+}
+
+
+
+.available-seat{
+
+background:#22c55e;
+
+}
+
+
+.booked-seat{
+
+background:#ef4444;
+
+}
+
+
+.selected-seat{
+
+background:#f97316;
+
+}
+
+
+
+
+/* =========================================
+   HALL FLOOR
+========================================= */
+
+
+.hall-layout-box{
+
+
+max-width:1250px;
+
+
+margin:auto;
+
+
+padding:35px;
+
+
+background:
+
+rgba(255,255,255,.05);
+
+
+border-radius:25px;
+
+
+border:
+
+1px solid rgba(255,255,255,.1);
+
+
+backdrop-filter:blur(15px);
+
+
+}
+
+
+
+
+
+/* GATE */
+
+.gate-row{
+
+
+display:flex;
+
+
+justify-content:space-between;
+
+
+align-items:center;
+
+
+margin-bottom:35px;
+
+
+color:white;
+
+
+}
+
+
+
+.gate{
+
+
+padding:12px 25px;
+
+
+border-radius:12px;
+
+
+background:#f97316;
+
+
+font-weight:700;
+
+
+}
+
+
+.aisle-label{
+
+
+color:#cbd5e1;
+
+
+font-weight:600;
+
+
+}
+
+
+
+
+
+/* =========================================
+   TABLE LAYOUT
+========================================= */
+
+
+.library-floor{
+
+
+display:flex;
+
+
+flex-direction:column;
+
+
+gap:35px;
+
+
+}
+
+
+
+.hall-row{
+
+
+display:flex;
+
+
+justify-content:center;
+
+
+gap:45px;
+
+
+}
+
+
+
+.study-table-block{
+
+
+display:flex;
+
+
+align-items:center;
+
+
+gap:15px;
+
+
+}
+
+
+
+.seat-column{
+
+
+display:flex;
+
+
+flex-direction:column;
+
+
+gap:10px;
+
+
+}
+
+
+
+
+
+.table-rectangle{
+
+
+height:130px;
+
+
+width:90px;
+
+
+background:
+
+linear-gradient(
+135deg,
+#334155,
+#1e293b
+);
+
+
+border-radius:15px;
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+color:white;
+
+
+font-weight:700;
+
+
+}
+
+
+
+
+/* =========================================
+   CHAIRS
+========================================= */
+
+
+.chair-seat{
+
+
+width:45px;
+
+
+height:45px;
+
+
+border-radius:10px;
+
+
+border:none;
+
+
+font-size:12px;
+
+
+font-weight:700;
+
+
+color:white;
+
+
+cursor:pointer;
+
+
+transition:.25s;
+
+
+}
+
+
+
+
+
+.chair-seat.available-seat{
+
+
+background:
+
+linear-gradient(
+135deg,
+#22c55e,
+#16a34a
+);
+
+
+}
+
+
+
+.chair-seat.booked-seat{
+
+
+background:
+
+linear-gradient(
+135deg,
+#ef4444,
+#dc2626
+);
+
+
+cursor:not-allowed;
+
+
+opacity:.8;
+
+
+}
+
+
+
+.chair-seat.selected-seat{
+
+
+background:
+
+linear-gradient(
+135deg,
+#f97316,
+#ea580c
+);
+
+
+transform:scale(1.1);
+
+
+box-shadow:
+
+0 10px 25px rgba(249,115,22,.4);
+
+
+}
+
+
+
+.chair-seat:hover:not(.booked-seat){
+
+
+transform:translateY(-3px);
+
+
+}
+
+
+
+
+/* =========================================
+   BOOKING SUMMARY
+========================================= */
+
+
+.booking-summary-box{
+
+
+max-width:520px;
+
+
+margin:40px auto 70px;
+
+
+padding:30px;
+
+
+text-align:center;
+
+
+background:
+
+rgba(255,255,255,.06);
+
+
+border-radius:25px;
+
+
+border:
+
+1px solid rgba(255,255,255,.1);
+
+
+backdrop-filter:blur(15px);
+
+
+color:white;
+
+
+}
+
+
+
+.booking-summary-box h3{
+
+font-size:28px;
+
+margin-bottom:20px;
+
+}
+
+
+
+.booking-summary-box p{
+
+color:#cbd5e1;
+
+font-size:16px;
+
+}
+
+
+
+.book-now-btn{
+
+
+width:100%;
+
+
+margin-top:20px;
+
+
+padding:15px;
+
+
+border:none;
+
+
+border-radius:14px;
+
+
+background:
+
+linear-gradient(
+135deg,
+#f97316,
+#ea580c
+);
+
+
+color:white;
+
+
+font-size:16px;
+
+
+font-weight:700;
+
+
+cursor:pointer;
+
+
+}
+
+
+
+.book-now-btn:hover{
+
+
+transform:translateY(-3px);
+
+
+}
+
+
+
+/* =========================================
+   POPUP
+========================================= */
+
+
+.seat-popup{
+
+
+position:fixed;
+
+
+bottom:30px;
+
+
+right:30px;
+
+
+padding:15px 25px;
+
+
+background:#0f172a;
+
+
+color:white;
+
+
+border-radius:15px;
+
+
+z-index:999;
+
+
+box-shadow:0 15px 40px rgba(0,0,0,.4);
+
+
+}
+
+
+
+
+
+.popup-success{
+
+background:#16a34a;
+
+}
+
+
+.popup-error{
+
+background:#dc2626;
+
+}
+
+
+
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+
+@media(max-width:900px){
+
+
+.hall-row{
+
+
+flex-direction:column;
+
+
+align-items:center;
+
+
+}
+
+
+.study-table-block{
+
+
+transform:scale(.9);
+
+
+}
+
+
+.seat-title,
+.page-title{
+
+
+font-size:35px;
+
+
+}
+
+
+
+}
+.control-row {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    gap: 18px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 180px;
+}
+
+.control-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #f8fafc;
+}
+
+.control-group select,
+.control-group input {
+    width: 100%;
+}
+
+/* ===============================
+   Seat Booking Header
+=============================== */
+
+.seat-header-box {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto 35px;
+    padding: 45px 50px;
+
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 22px;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Optional glow effect */
+.seat-header-box::before {
+    content: "";
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 220px;
+    height: 220px;
+    background: rgba(59, 130, 246, 0.12);
+    border-radius: 50%;
+    filter: blur(50px);
+}
+
+.seat-header-box::after {
+    content: "";
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 220px;
+    height: 220px;
+    background: rgba(16, 185, 129, 0.10);
+    border-radius: 50%;
+    filter: blur(50px);
+}
+
+.seat-header-box > div {
+    position: relative;
+    z-index: 2;
+}
+
+/* ===============================
+   Subtitle
+=============================== */
+
+.seat-subtitle {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #38bdf8;
+    margin-bottom: 14px;
+}
+
+/* ===============================
+   Title
+=============================== */
+
+.seat-title {
+    font-size: 44px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 18px;
+    line-height: 1.2;
+}
+
+/* ===============================
+   Description
+=============================== */
+
+.seat-description {
+    max-width: 720px;
+    margin: 0 auto;
+    font-size: 17px;
+    line-height: 1.8;
+    color: #cbd5e1;
+}
+
+/* ===============================
+   Hover Animation
+=============================== */
+
+.seat-header-box:hover {
+    transform: translateY(-3px);
+    transition: all 0.3s ease;
+    box-shadow:
+        0 22px 50px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* ===============================
+   Responsive
+=============================== */
+
+@media (max-width: 992px) {
+    .seat-header-box {
+        width: 94%;
+        padding: 35px;
+    }
+
+    .seat-title {
+        font-size: 36px;
+    }
+
+    .seat-description {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .seat-header-box {
+        padding: 28px 20px;
+    }
+
+    .seat-subtitle {
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+
+    .seat-title {
+        font-size: 30px;
+    }
+
+    .seat-description {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+}
+
+@media (max-width: 480px) {
+    .seat-title {
+        font-size: 24px;
+    }
+
+    .seat-description {
+        font-size: 14px;
+    }
+}
+.library-floor-plan {
+
+    width:100%;
+
+    min-height:500px;
+
+    background:transparent;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:40px;
+
+}
+
+
+.table-wrapper {
+
+    width:260px;
+
+}
+.unbook-btn{
+
+padding:12px 24px;
+
+border:none;
+
+border-radius:12px;
+
+background:#ef4444;
+
+color:white;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+
+.unbook-btn:hover{
+
+background:#dc2626;
+
 }

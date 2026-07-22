@@ -1,0 +1,343 @@
+.hall-container {
+
+    position: relative;
+
+    width:100%;
+
+    min-height:700px;
+
+    background:transparent;
+
+    border:5px solid #6b4f35;
+
+    border-radius:25px;
+
+    padding:80px 70px 70px 70px;
+
+    box-sizing:border-box;
+
+    overflow:hidden;
+
+}
+
+
+
+/* ===============================
+      SEAT AREA
+================================ */
+
+.hall-seat-area{
+
+    width:100%;
+
+    min-height:600px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+
+/* ===============================
+      COMMON WINDOW FRAME
+================================ */
+
+
+.window {
+
+    position:absolute;
+
+    padding:6px;
+
+    background:#263238;
+
+    border:3px solid #111827;
+
+    box-shadow:
+    0 6px 15px rgba(0,0,0,.35);
+
+    z-index:20;
+
+    overflow:hidden;
+
+}
+
+
+
+/* ===============================
+      GLASS 4 COMPARTMENTS
+================================ */
+
+
+.glass-box {
+
+
+    width:100%;
+
+    height:100%;
+
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    grid-template-rows:1fr 1fr;
+
+
+    gap:4px;
+
+
+    background:#1e293b;
+
+}
+
+
+
+
+.glass-box span {
+
+
+    background:
+    linear-gradient(
+        135deg,
+        #e6f7ff,
+        #5faecc
+    );
+
+
+    border:2px solid #94a3b8;
+
+
+    box-shadow:
+    inset 0 0 12px rgba(255,255,255,.8);
+
+
+}
+
+
+
+
+/* glass reflection */
+
+
+.glass-box span::after {
+
+
+    content:"";
+
+    display:block;
+
+
+    width:30%;
+
+    height:100%;
+
+
+    background:white;
+
+    opacity:.35;
+
+
+    transform:skewX(-20deg);
+
+
+}
+
+
+
+
+/* ===============================
+      LEFT WALL WINDOW
+================================ */
+
+
+.window.left {
+
+
+    left:-5px;
+
+    width:60px;
+
+    height:150px;
+
+
+    transform:translateY(-50%);
+
+
+    clip-path:polygon(
+
+        0% 8%,
+
+        100% 0%,
+
+        100% 92%,
+
+        0% 100%
+
+    );
+
+}
+
+
+
+/* ===============================
+      RIGHT WALL WINDOW
+================================ */
+
+
+.window.right {
+
+
+    right:-5px;
+
+
+    width:60px;
+
+
+    height:150px;
+
+
+    transform:translateY(-50%);
+
+
+
+    clip-path:polygon(
+
+        0% 0%,
+
+        100% 8%,
+
+        100% 100%,
+
+        0% 92%
+
+    );
+
+}
+
+
+
+/* ===============================
+      BOTTOM WINDOW
+================================ */
+
+
+.window.bottom {
+
+
+    bottom:-5px;
+
+
+    width:190px;
+
+
+    height:60px;
+
+
+    transform:translateX(-50%);
+
+
+    clip-path:polygon(
+
+        8% 0%,
+
+        92% 0%,
+
+        100% 100%,
+
+        0% 100%
+
+    );
+
+}
+
+
+
+/* ===============================
+      ENTRANCE EXIT
+================================ */
+
+
+.hall-top-bar{
+
+
+    position:absolute;
+
+
+    top:10px;
+
+
+    left:0;
+
+
+    width:100%;
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    padding:0 60px;
+
+
+    box-sizing:border-box;
+
+
+}
+
+
+
+.entrance{
+
+
+    background:#22c55e;
+
+
+    color:white;
+
+
+    padding:12px 25px;
+
+
+    border-radius:10px;
+
+
+    font-weight:bold;
+
+
+    box-shadow:0 4px 10px rgba(0,0,0,.25);
+
+
+}
+
+
+
+
+.exit{
+
+
+    background:#ef4444;
+
+
+    color:white;
+
+
+    padding:12px 25px;
+
+
+    border-radius:10px;
+
+
+    font-weight:bold;
+
+
+    box-shadow:0 4px 10px rgba(0,0,0,.25);
+
+
+}

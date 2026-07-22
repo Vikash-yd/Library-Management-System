@@ -13,7 +13,7 @@ import CategoryBooks from './pages/CategoryBooks.jsx';
 import BookDetails from './pages/BookDetails.jsx';
 import LongueDetails from "./pages/LongueDetails.jsx";
 import EventDetails from "./pages/EventDetails";
-import Activities from "./pages/Activities.jsx";
+
 import Search from './pages/Search.jsx';
 import UserDashboard from "./pages/UserDashboard";
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -29,7 +29,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/longues" element={<Longues />} />
         <Route path="/longues/:id" element={<LongueDetails />} />
         <Route path="/event/:id" element={<EventDetails />} />
-        <Route path="/activities" element={<Activities />} />
+        
         <Route path="/seat" element={<Seat />} />
         <Route path="/search" element={<Search />} />
         <Route path="/dashboard" element={<UserDashboard />} />

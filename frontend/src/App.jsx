@@ -8,6 +8,7 @@ import img2 from "./assets/book2.jpg";
 import img3 from "./assets/book3.jpg";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import UserDashboard from "./pages/UserDashboard";
 
 function App() {
   const cardsRef = useRef(null);

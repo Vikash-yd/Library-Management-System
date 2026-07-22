@@ -114,7 +114,7 @@ function Longues() {
   };
 
   const handleViewActivities = () => {
-    navigate("/activities");
+    navigate("/dashboard?tab=events");
   };
 
   const handleCardClick = (id) => {

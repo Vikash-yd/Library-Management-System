@@ -1,327 +1,980 @@
-.dashboard-page {
-    min-height: 100vh;
-    padding: 40px 8%;
-    background: linear-gradient(rgba(2, 6, 23, 0.96), rgba(15, 23, 42, 0.96));
-    color: #fff;
+/* ==========================================================
+   PREMIUM DASHBOARD CSS
+   PART 1
+========================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-/* ================= HEADER ================= */
+.dashboard-page{
+    min-height:100vh;
+    padding:50px 8%;
+    color:#fff;
 
-.dashboard-header {
-    text-align: center;
-    margin-bottom: 40px;
+    background:
+        radial-gradient(circle at top right,rgba(59,130,246,.12),transparent 35%),
+        radial-gradient(circle at bottom left,rgba(16,185,129,.08),transparent 35%),
+        linear-gradient(135deg,#020617 0%,#0f172a 45%,#111827 100%);
 }
 
-.dashboard-header h1 {
-    font-size: 2.4rem;
-    margin-bottom: 10px;
-    color: #f8fafc;
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.dashboard-header{
+
+    max-width:1100px;
+
+    margin:0 auto 45px;
+
+    text-align:center;
+
+    padding:40px;
+
+    border-radius:24px;
+
+    background:rgba(15,23,42,.72);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.04);
+
+    position:relative;
+
+    overflow:hidden;
 }
 
-.dashboard-header p {
-    color: #cbd5e1;
-    font-size: 1rem;
-}
+.dashboard-header::before{
 
-/* ================= TABS ================= */
+    content:"";
 
-.dashboard-tabs {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 35px;
-    flex-wrap: wrap;
-}
+    position:absolute;
 
-.dashboard-tabs button {
-    border: none;
-    outline: none;
-    cursor: pointer;
+    width:250px;
 
-    padding: 12px 24px;
+    height:250px;
 
-    border-radius: 999px;
+    background:rgba(37,99,235,.15);
 
-    background: #1e293b;
-    color: #cbd5e1;
+    border-radius:50%;
 
-    font-size: 0.95rem;
-    font-weight: 600;
+    top:-120px;
 
-    transition: all .3s ease;
-}
+    right:-100px;
 
-.dashboard-tabs button:hover {
-    background: #334155;
-}
-
-.dashboard-tabs button.active {
-    background: #3b82f6;
-    color: white;
-}
-
-/* ================= CONTENT ================= */
-
-.dashboard-content {
-    max-width: 900px;
-    margin: auto;
-}
-
-.dashboard-section {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-/* ================= CARD ================= */
-
-.dashboard-card {
-    background: rgba(30, 41, 59, 0.95);
-
-    border: 1px solid rgba(148, 163, 184, .15);
-
-    border-radius: 18px;
-
-    padding: 25px;
-
-    box-shadow: 0 12px 28px rgba(0,0,0,.25);
-
-    transition: .3s;
-}
-
-.dashboard-card:hover {
-    transform: translateY(-4px);
-}
-
-.dashboard-card h3 {
-    color: #60a5fa;
-    margin-bottom: 15px;
-}
-
-.dashboard-card p {
-    margin: 8px 0;
-    color: #e2e8f0;
-}
-
-/* ================= EMPTY ================= */
-
-.empty-card {
-
-    background: rgba(30,41,59,.8);
-
-    border: 2px dashed rgba(148,163,184,.25);
-
-    border-radius: 18px;
-
-    padding: 50px;
-
-    text-align: center;
-
-    color: #94a3b8;
-}
-
-/* ================= BUTTON ================= */
-
-.history-btn {
-
-    align-self: center;
-
-    margin-top: 15px;
-
-    padding: 12px 30px;
-
-    border: none;
-
-    border-radius: 999px;
-
-    background: #2563eb;
-
-    color: white;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: .3s;
-}
-
-.history-btn:hover {
-
-    background: #1d4ed8;
-
-    transform: translateY(-2px);
+    filter:blur(55px);
 
 }
 
-/* ================= MOBILE ================= */
+.dashboard-header::after{
 
-@media (max-width:768px){
+    content:"";
 
-    .dashboard-page{
-        padding:30px 20px;
-    }
+    position:absolute;
 
-    .dashboard-header h1{
-        font-size:2rem;
-    }
+    width:220px;
 
-    .dashboard-tabs{
-        gap:10px;
-    }
+    height:220px;
 
-    .dashboard-tabs button{
-        width:100%;
-    }
+    background:rgba(16,185,129,.12);
 
-    .dashboard-card{
-        padding:20px;
-    }
+    border-radius:50%;
+
+    bottom:-120px;
+
+    left:-80px;
+
+    filter:blur(60px);
 
 }
-/* ================= ACTION BUTTONS ================= */
 
-.dashboard-actions {
-    display: flex;
-    gap: 12px;
-    margin-top: 18px;
-    flex-wrap: wrap;
+.dashboard-header>*{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.dashboard-header h1{
+
+    font-size:2.9rem;
+
+    font-weight:700;
+
+    color:#fff;
+
+    margin-bottom:12px;
+
+}
+
+.dashboard-header p{
+
+    font-size:1.05rem;
+
+    color:#cbd5e1;
+
+}
+
+/* ==========================================================
+   TABS
+========================================================== */
+
+.dashboard-tabs{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:18px;
+
+    margin-bottom:45px;
+
+}
+
+.dashboard-tabs button{
+
+    border:none;
+
+    cursor:pointer;
+
+    padding:13px 28px;
+
+    border-radius:14px;
+
+    background:rgba(30,41,59,.85);
+
+    backdrop-filter:blur(15px);
+
+    color:#cbd5e1;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.3s;
+
+}
+
+.dashboard-tabs button:hover{
+
+    transform:translateY(-3px);
+
+    background:#334155;
+
+    box-shadow:
+
+        0 15px 35px rgba(59,130,246,.20);
+
+}
+
+.dashboard-tabs button.active{
+
+    background:
+
+        linear-gradient(135deg,#2563eb,#3b82f6);
+
+    color:white;
+
+    box-shadow:
+
+        0 18px 35px rgba(37,99,235,.40);
+
+}
+
+/* ==========================================================
+   CONTENT
+========================================================== */
+
+.dashboard-content{
+
+    max-width:1000px;
+
+    margin:auto;
+
+}
+
+.dashboard-section{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+/* ==========================================================
+   PREMIUM CARD
+========================================================== */
+
+.dashboard-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:28px;
+
+    border-radius:24px;
+
+    background:
+
+        rgba(15,23,42,.72);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.35s;
+
+    box-shadow:
+
+        0 20px 40px rgba(0,0,0,.30);
+
+}
+
+.dashboard-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        linear-gradient(
+
+            130deg,
+
+            rgba(255,255,255,.05),
+
+            transparent 60%
+
+        );
+
+    pointer-events:none;
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-6px);
+
+    border-color:#3b82f6;
+
+    box-shadow:
+
+        0 30px 60px rgba(37,99,235,.18);
+
+}
+
+.dashboard-card h3{
+
+    color:#60a5fa;
+
+    margin-bottom:18px;
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+.dashboard-card p{
+
+    margin:12px 0;
+
+    color:#e2e8f0;
+
+    line-height:1.8;
+
+    font-size:15px;
+
+}
+
+.dashboard-card strong{
+
+    color:white;
+
+}
+
+/* ==========================================================
+   EMPTY CARD
+========================================================== */
+
+.empty-card{
+
+    text-align:center;
+
+    padding:70px 30px;
+
+    border-radius:24px;
+
+    background:
+
+        rgba(15,23,42,.55);
+
+    backdrop-filter:blur(18px);
+
+    border:2px dashed rgba(148,163,184,.25);
+
+    color:#94a3b8;
+
+    font-size:17px;
+
+}
+
+/* ==========================================================
+   ACTION BUTTONS
+========================================================== */
+
+.dashboard-actions{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:25px;
+
+    flex-wrap:wrap;
+
 }
 
 .qr-btn,
-.history-btn {
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 10px 18px;
-    border-radius: 10px;
-    font-size: 14px;
-    font-weight: 600;
-    transition: all 0.25s ease;
+
+.history-btn{
+
+    border:none;
+
+    cursor:pointer;
+
+    padding:12px 22px;
+
+    border-radius:12px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:white;
+
+    transition:.3s;
+
 }
 
-.qr-btn {
-    background: #2563eb;
-    color: white;
+.qr-btn{
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #2563eb,
+
+            #3b82f6
+
+        );
+
 }
 
-.qr-btn:hover {
-    background: #1d4ed8;
-    transform: translateY(-2px);
+.history-btn{
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #10b981,
+
+            #059669
+
+        );
+
 }
 
-.history-btn {
-    background: #10b981;
-    color: white;
+.qr-btn:hover,
+
+.history-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+
+        0 15px 30px rgba(0,0,0,.28);
+
 }
 
-.history-btn:hover {
-    background: #059669;
-    transform: translateY(-2px);
+.qr-btn:active,
+
+.history-btn:active{
+
+    transform:scale(.97);
+
+}
+/* ==========================================================
+   PREMIUM DASHBOARD CSS
+   PART 2
+========================================================== */
+
+
+/* ==========================================================
+   HISTORY OVERLAY
+========================================================== */
+
+.history-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(2,6,23,.78);
+
+    backdrop-filter:blur(8px);
+
+    -webkit-backdrop-filter:blur(8px);
+
+    z-index:9999;
+
+    animation:fadeOverlay .25s ease;
+
 }
 
-/* ================= HISTORY MODAL ================= */
 
-.history-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.65);
-    backdrop-filter: blur(5px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9998;
+/* ==========================================================
+   HISTORY MODAL
+========================================================== */
+
+.history-modal{
+
+    position:relative;
+
+    width:750px;
+
+    max-width:95%;
+
+    max-height:85vh;
+
+    overflow-y:auto;
+
+    padding:35px;
+
+    border-radius:24px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.98),
+            rgba(248,250,252,.98)
+        );
+
+    box-shadow:
+
+        0 35px 80px rgba(0,0,0,.35);
+
+    animation:modalPopup .35s ease;
+
 }
 
-.history-modal {
-    position: relative;
-    width: 700px;
-    max-width: 92%;
-    max-height: 80vh;
-    overflow-y: auto;
-    background: white;
-    border-radius: 18px;
-    padding: 30px;
-    animation: fadeIn .25s ease;
+
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
+
+.history-modal::-webkit-scrollbar{
+
+    width:8px;
+
 }
 
-.history-close {
-    position: absolute;
-    top: 15px;
-    right: 18px;
-    width: 35px;
-    height: 35px;
-    border: none;
-    border-radius: 50%;
-    background: crimson;
-    color: white;
-    cursor: pointer;
-    font-size: 18px;
+.history-modal::-webkit-scrollbar-track{
+
+    background:#e5e7eb;
+
+    border-radius:20px;
+
 }
 
-.history-close:hover {
-    background: #b91c1c;
+.history-modal::-webkit-scrollbar-thumb{
+
+    background:#94a3b8;
+
+    border-radius:20px;
+
 }
 
-.history-modal h2 {
-    margin-bottom: 25px;
-    text-align: center;
-    color: #111827;
+.history-modal::-webkit-scrollbar-thumb:hover{
+
+    background:#64748b;
+
 }
 
-.history-card {
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 16px;
-    transition: .2s;
+
+/* ==========================================================
+   CLOSE BUTTON
+========================================================== */
+
+.history-close{
+
+    position:absolute;
+
+    top:18px;
+
+    right:18px;
+
+    width:40px;
+
+    height:40px;
+
+    border:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    color:white;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #ef4444,
+            #dc2626
+        );
+
+    transition:.3s;
+
 }
 
-.history-card:hover {
-    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+.history-close:hover{
+
+    transform:rotate(90deg) scale(1.08);
+
 }
 
-.history-card h4 {
-    margin-bottom: 10px;
-    color: #111827;
+
+/* ==========================================================
+   MODAL TITLE
+========================================================== */
+
+.history-modal h2{
+
+    text-align:center;
+
+    margin-bottom:28px;
+
+    color:#0f172a;
+
+    font-size:30px;
+
+    font-weight:700;
+
 }
 
-.history-card p {
-    margin: 6px 0;
-    color: #4b5563;
+
+/* ==========================================================
+   HISTORY CARD
+========================================================== */
+
+.history-card{
+
+    position:relative;
+
+    margin-bottom:20px;
+
+    padding:22px;
+
+    border-radius:18px;
+
+    background:white;
+
+    border:1px solid #e2e8f0;
+
+    transition:.3s;
+
+    overflow:hidden;
+
 }
 
-/* ================= ANIMATION ================= */
+.history-card::before{
 
-@keyframes fadeIn {
+    content:"";
 
-    from {
-        opacity: 0;
-        transform: scale(.9);
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    bottom:0;
+
+    width:5px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            #2563eb,
+            #10b981
+        );
+
+}
+
+.history-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+
+        0 18px 35px rgba(0,0,0,.12);
+
+}
+
+
+.history-card h4{
+
+    margin-bottom:12px;
+
+    color:#0f172a;
+
+    font-size:20px;
+
+}
+
+.history-card p{
+
+    margin:8px 0;
+
+    color:#475569;
+
+    line-height:1.7;
+
+    font-size:15px;
+
+}
+
+.history-card strong{
+
+    color:#111827;
+
+}
+
+
+/* ==========================================================
+   STATUS BADGES
+========================================================== */
+
+.status-active{
+
+    display:inline-block;
+
+    padding:6px 14px;
+
+    border-radius:999px;
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.status-completed{
+
+    display:inline-block;
+
+    padding:6px 14px;
+
+    border-radius:999px;
+
+    background:#dbeafe;
+
+    color:#1d4ed8;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.status-cancelled{
+
+    display:inline-block;
+
+    padding:6px 14px;
+
+    border-radius:999px;
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+
+/* ==========================================================
+   GLASS EFFECT
+========================================================== */
+
+.glass-card{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+
+/* ==========================================================
+   FADE ANIMATION
+========================================================== */
+
+@keyframes fadeOverlay{
+
+    from{
+
+        opacity:0;
+
     }
 
-    to {
-        opacity: 1;
-        transform: scale(1);
+    to{
+
+        opacity:1;
+
     }
 
 }
 
-/* ================= MOBILE ================= */
+@keyframes modalPopup{
 
-@media (max-width: 768px) {
+    from{
 
-    .dashboard-actions {
-        flex-direction: column;
+        opacity:0;
+
+        transform:translateY(30px) scale(.94);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0) scale(1);
+
+    }
+
+}
+
+
+/* ==========================================================
+   FLOAT ANIMATION
+========================================================== */
+
+@keyframes floatCard{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-5px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.dashboard-card:hover{
+
+    animation:floatCard 2s ease infinite;
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media(max-width:992px){
+
+    .dashboard-page{
+
+        padding:40px 30px;
+
+    }
+
+    .dashboard-header{
+
+        padding:30px;
+
+    }
+
+    .dashboard-header h1{
+
+        font-size:2.3rem;
+
+    }
+
+    .dashboard-content{
+
+        max-width:100%;
+
+    }
+
+}
+
+
+@media(max-width:768px){
+
+    .dashboard-page{
+
+        padding:30px 20px;
+
+    }
+
+    .dashboard-header{
+
+        padding:25px;
+
+    }
+
+    .dashboard-header h1{
+
+        font-size:2rem;
+
+    }
+
+    .dashboard-header p{
+
+        font-size:15px;
+
+    }
+
+    .dashboard-tabs{
+
+        gap:10px;
+
+    }
+
+    .dashboard-tabs button{
+
+        width:100%;
+
+    }
+
+    .dashboard-card{
+
+        padding:22px;
+
+    }
+
+    .dashboard-actions{
+
+        flex-direction:column;
+
     }
 
     .qr-btn,
-    .history-btn {
-        width: 100%;
+
+    .history-btn{
+
+        width:100%;
+
     }
 
-    .history-modal {
-        width: 95%;
-        padding: 20px;
+    .history-modal{
+
+        width:95%;
+
+        padding:22px;
+
+    }
+
+    .history-modal h2{
+
+        font-size:24px;
+
+    }
+
+}
+
+
+@media(max-width:480px){
+
+    .dashboard-page{
+
+        padding:25px 15px;
+
+    }
+
+    .dashboard-header h1{
+
+        font-size:1.7rem;
+
+    }
+
+    .dashboard-header p{
+
+        font-size:14px;
+
+    }
+
+    .dashboard-card{
+
+        padding:18px;
+
+    }
+
+    .history-card{
+
+        padding:18px;
+
+    }
+
+    .history-modal{
+
+        padding:18px;
+
     }
 
 }

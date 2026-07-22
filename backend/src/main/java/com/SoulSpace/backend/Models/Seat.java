@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @JsonIgnoreProperties({
         "hibernateLazyInitializer",
         "handler"
@@ -22,35 +23,68 @@ public class Seat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Example: A01, A02, B01
+
     @Column(nullable = false)
     private String seatNumber;
 
-    // Hall to which this seat belongs
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hall_id", nullable = false)
     @JsonIgnore
     private Hall hall;
 
-    // Floor (optional but useful)
+
     private Integer floor;
 
-    // Window / Center / Corner
+
     private String location;
 
-    // Silent Zone / Discussion Zone
+
     private String zone;
 
-    // Charging facility
+
     private Boolean hasChargingPort = false;
 
-    // Near window
+
     private Boolean nearWindow = false;
 
-    // Admin can disable seats for maintenance
+
     private Boolean active = true;
 
-    // Booking history of this seat
+
+
+    // ============================
+    // TABLE INFORMATION
+    // ============================
+
+    @Column(name = "table_no")
+    private Integer tableNo;
+
+
+    @Column(name = "row_no")
+    private Integer rowNo;
+
+
+    @Column(name = "table_order")
+    private Integer tableOrder;
+
+
+
+    // ============================
+    // SEAT POSITION
+    // ============================
+
+     
+
+
+
+     
+
+
+    // ============================
+    // BOOKINGS
+    // ============================
+
     @OneToMany(mappedBy = "seat", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<SeatBooking> bookings = new ArrayList<>();

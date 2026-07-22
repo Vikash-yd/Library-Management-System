@@ -1,13 +1,84 @@
 import { useEffect, useMemo, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import LibraryTable from "../components/LibraryTable";
+ 
 import "./Seat.css";
+import HallLayout from "./HallLayout.jsx";
 
 import hallService from "../services/hallService";
 import seatService from "../services/seatService";
 import seatBookingService from "../services/seatBookingService";
+const hallLayouts = {
 
+1:{
+ windows:[
+  // Left side - 2 windows
+  {side:"left", position:20},
+  {side:"left", position:65},
+
+  // Right side - 1 window
+  {side:"right", position:45},
+
+  // Bottom side - 1 window
+  {side:"bottom", position:50}
+ ]
+},
+
+
+
+2:{
+ windows:[
+  // Left side - 1 window
+  {side:"left", position:40},
+
+  // Right side - 2 windows
+  {side:"right", position:25},
+  {side:"right", position:70},
+
+  // Bottom side - 2 windows
+  {side:"bottom", position:25},
+  {side:"bottom", position:75}
+ ]
+},
+
+
+
+3:{
+ windows:[
+  // Left side - 2 windows
+  {side:"left", position:30},
+  {side:"left", position:70},
+
+  // Right side - 1 window
+  {side:"right", position:50},
+
+  // Bottom side - 1 window
+  {side:"bottom", position:50}
+ ]
+},
+
+
+
+4:{
+ windows:[
+  // Left side - 1 window
+  {side:"left", position:50},
+
+  // Right side - 2 windows
+  {side:"right", position:25},
+  {side:"right", position:75},
+
+  // Bottom side - 2 windows
+  {side:"bottom", position:35},
+  {side:"bottom", position:70}
+ ]
+}
+
+};
 function Seat() {
+
+console.log("SEAT COMPONENT RENDER");
   const user = JSON.parse(localStorage.getItem("user"));
 
   const [halls, setHalls] = useState([]);
@@ -15,7 +86,6 @@ function Seat() {
 
   const [seats, setSeats] = useState([]);
   const [bookings, setBookings] = useState([]);
-
   const [selectedSeat, setSelectedSeat] = useState(null);
 
   const [bookingDate, setBookingDate] = useState(
@@ -27,6 +97,8 @@ function Seat() {
 
   const [popupMessage, setPopupMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [currentBooking, setCurrentBooking] = useState(null);
+   
 
   // =========================
   // LOAD HALLS
@@ -52,15 +124,28 @@ function Seat() {
   // =========================
   // LOAD SEATS
   // =========================
-  const loadSeats = async (hallId) => {
-    try {
-      const data = await seatService.getSeatsByHall(hallId);
-      setSeats(data || []);
-    } catch (err) {
-      console.error("Seat loading failed:", err);
-      setSeats([]);
-    }
-  };
+   const loadSeats = async (hallId) => {
+
+console.log("LOAD SEATS CALLED:", hallId);
+
+try {
+
+const data = await seatService.getSeatsByHall(hallId);
+
+console.log("SEATS FROM API:", data);
+
+setSeats(data || []);
+
+}
+catch(err){
+
+console.error("Seat loading failed:",err);
+
+setSeats([]);
+
+}
+
+};
 
   // =========================
   // LOAD BOOKINGS
@@ -83,38 +168,57 @@ function Seat() {
     }
   };
 
-  // =========================
-  // RELOAD ON FILTER CHANGE
-  // =========================
-  useEffect(() => {
-    if (!selectedHallId) return;
+const loadCurrentBooking = async () => {
 
-    loadSeats(selectedHallId);
-    loadBookings(selectedHallId);
-  }, [
-    selectedHallId,
-    bookingDate,
-    startTime,
-    durationMinutes,
-  ]);
+  if(!user?.id) return;
+
+  try {
+
+    const data = await seatBookingService.getCurrentBooking(user.id);
+
+if(data){
+    setCurrentBooking(data);
+}
+else{
+    setCurrentBooking(null);
+}
+
+  } catch(err){
+
+    console.error("Current booking load failed", err);
+
+    setCurrentBooking(null);
+
+  }
+
+};
+   
+
+   
 
   // =========================
   // AUTO REFRESH BOOKINGS
   // =========================
   useEffect(() => {
-    if (!selectedHallId) return;
 
-    const interval = setInterval(() => {
-      loadBookings(selectedHallId);
-    }, 5000);
+    console.log("USE EFFECT RUNNING");
+    console.log("SELECTED HALL ID:", selectedHallId);
 
-    return () => clearInterval(interval);
-  }, [
+    if (!selectedHallId) {
+        console.log("NO HALL SELECTED");
+        return;
+    }
+
+    loadSeats(selectedHallId);
+    loadBookings(selectedHallId);
+    loadCurrentBooking();
+
+}, [
     selectedHallId,
     bookingDate,
     startTime,
-    durationMinutes,
-  ]);
+    durationMinutes
+]);
 
   // =========================
   // BOOKED SEAT MAP
@@ -134,6 +238,33 @@ function Seat() {
 
     return map;
   }, [bookings]);
+   
+// =========================
+// GROUP SEATS BY TABLE
+ 
+ const tables = useMemo(() => {
+
+    const map = {};
+
+    seats.forEach((seat)=>{
+
+        const tableNumber = seat.tableNo || seat.table_no;
+
+        if(!map[tableNumber]){
+            map[tableNumber] = [];
+        }
+
+        map[tableNumber].push(seat);
+
+    });
+
+    console.log("TABLE GROUP:",map);
+
+    return map;
+
+},[seats]);
+
+
 
   // =========================
   // SELECT SEAT
@@ -186,6 +317,8 @@ function Seat() {
 
     await loadBookings(selectedHallId);
 
+    await loadCurrentBooking();
+
   } catch (err) {
 
     console.error(err);
@@ -207,214 +340,489 @@ function Seat() {
 
   }
 };
-    return (
-    <>
-      <Navbar />
+const handleCancelBooking = async () => {
 
-      <div className="seat-page">
+    if (!currentBooking?.bookingId) {
+        setPopupMessage("No active booking found.");
+        return;
+    }
 
-        {/* HERO */}
-        <section className="seat-header-box">
-          <div>
-            <p className="seat-subtitle">
-              SELECT • RESERVE • STUDY
-            </p>
+    try {
 
-            <h1 className="seat-title">
-              Seat Booking System
-            </h1>
+        setLoading(true);
 
-            <p className="seat-description">
-              Book your seat in real-time using our time-slot booking system.
-            </p>
-          </div>
-        </section>
+        await seatBookingService.cancelBooking(
+            currentBooking.bookingId
+        );
 
-        {/* MAIN CONTENT */}
-        <div className="seat-shell">
 
-          {/* CONTROLS */}
-          <div className="hall-controls-box">
+        setPopupMessage("Seat unbooked successfully!");
 
-            <select
-              value={selectedHallId}
-              onChange={(e) =>
-                setSelectedHallId(Number(e.target.value))
-              }
-            >
-              {halls.length === 0 ? (
-                <option>No halls available</option>
-              ) : (
-                halls.map((hall) => (
-                  <option
-                    key={hall.id}
-                    value={hall.id}
-                  >
-                    {hall.name}
-                  </option>
-                ))
-              )}
-            </select>
+        // remove old booking from UI
+        setCurrentBooking(null);
+        setSelectedSeat(null);
 
-            <input
-              type="date"
-              value={bookingDate}
-              onChange={(e) =>
-                setBookingDate(e.target.value)
-              }
-            />
 
-            <input
-              type="time"
-              value={startTime}
-              onChange={(e) =>
-                setStartTime(e.target.value)
-              }
-            />
+        // refresh booked seats
+        await loadBookings(selectedHallId);
 
-            <select
-              value={durationMinutes}
-              onChange={(e) =>
-                setDurationMinutes(Number(e.target.value))
-              }
-            >
-              <option value={30}>30 Minutes</option>
-              <option value={60}>1 Hour</option>
-              <option value={120}>2 Hours</option>
-            </select>
 
-          </div>
+        // verify user booking is cleared
+        await loadCurrentBooking();
 
-          {/* SEAT GRID */}
-          <div className="seat-grid">
 
-            {seats.length === 0 ? (
+    } catch (err) {
 
-              <div
-                style={{
-                  color: "#cbd5e1",
-                  gridColumn: "1/-1",
-                  textAlign: "center",
-                  padding: "30px",
-                  fontSize: "16px",
-                }}
-              >
-                No seats available in this hall.
-              </div>
+        console.error(
+            "Cancel booking error:",
+            err.response?.data || err
+        );
 
-            ) : (
+        setPopupMessage(
+            err.response?.data ||
+            "Unable to unbook seat."
+        );
 
-              seats.map((seat) => {
+    } finally {
 
-                const isBooked =
-                  bookedMap[seat.seatNumber];
+        setLoading(false);
 
-                const isSelected =
-                  selectedSeat?.id === seat.id;
+        setTimeout(()=>{
+            setPopupMessage("");
+        },2500);
 
-                return (
-                  <button
-                    key={seat.id}
-                    onClick={() =>
-                      handleSeatClick(seat)
-                    }
-                    className={`seat-box
-                      ${isBooked ? "booked" : "available"}
-                      ${isSelected ? "selected" : ""}
-                    `}
-                  >
-                    {seat.seatNumber}
-                  </button>
-                );
-              })
+    }
 
-            )}
+};
+  return (
+<>
+<Navbar />
 
-          </div>
-          <div className="seat-legend">
-  <div className="legend-item">
-    <span className="legend-color legend-available"></span>
-    Available
-  </div>
+<div className="seat-page">
 
-  <div className="legend-item">
-    <span className="legend-color legend-selected"></span>
-    Selected
-  </div>
+<section className="seat-header-box">
+<div>
+<p className="seat-subtitle">
+SELECT • RESERVE • STUDY
+</p>
 
-  <div className="legend-item">
-    <span className="legend-color legend-booked"></span>
-    Booked
-  </div>
+<h1 className="seat-title">
+Seat Booking System
+</h1>
+
+<p className="seat-description">
+Book your seat in real-time using our time-slot booking system.
+</p>
+
 </div>
+</section>
 
-          {/* BOOKING SUMMARY */}
-          <div className="booking-summary-box">
 
-            <h3>Booking Summary</h3>
 
-            <p>
-              <strong>Hall:</strong>{" "}
-              {halls.find(
-                (h) => h.id === selectedHallId
-              )?.name || "-"}
-            </p>
+<div className="seat-shell">
 
-            <p>
-              <strong>Seat:</strong>{" "}
-              {selectedSeat
-                ? selectedSeat.seatNumber
-                : "None Selected"}
-            </p>
 
-            <p>
-              <strong>Date:</strong> {bookingDate}
-            </p>
+{/* CONTROLS */}
 
-            <p>
-              <strong>Time:</strong> {startTime}
-            </p>
+<div className="hall-controls-box">
 
-            <p>
-              <strong>Duration:</strong>{" "}
-              {durationMinutes} Minutes
-            </p>
+<div className="control-row">
 
-            <button
-              className="book-now-btn"
-              onClick={handleBooking}
-              disabled={
-                loading ||
-                !selectedSeat
-              }
-            >
-              {loading
-                ? "Booking..."
-                : "Book Seat"}
-            </button>
 
-          </div>
+<div className="control-group">
 
-        </div>
+<label>Hall</label>
 
-      </div>
+<select
+value={selectedHallId}
+onChange={(e)=>setSelectedHallId(Number(e.target.value))}
+>
 
-      {popupMessage && (
-  <div
-    className={`seat-popup ${
-      popupMessage.toLowerCase().includes("success") ||
-      popupMessage.toLowerCase().includes("selected")
-        ? "popup-success"
-        : "popup-error"
-    }`}
-  >
-    {popupMessage}
-  </div>
-)}
+{
+halls.map((hall)=>(
 
-      <Footer />
-    </>
-  );
+<option
+key={hall.id}
+value={hall.id}
+>
+
+{hall.name}
+
+</option>
+
+))
 }
 
+</select>
+
+</div>
+
+
+
+<div className="control-group">
+
+<label>Date</label>
+
+<input
+type="date"
+value={bookingDate}
+onChange={(e)=>setBookingDate(e.target.value)}
+/>
+
+</div>
+
+
+
+<div className="control-group">
+
+<label>Start Time</label>
+
+<input
+type="time"
+value={startTime}
+onChange={(e)=>setStartTime(e.target.value)}
+/>
+
+</div>
+
+
+
+<div className="control-group">
+
+<label>Duration</label>
+
+<select
+value={durationMinutes}
+onChange={(e)=>setDurationMinutes(Number(e.target.value))}
+>
+
+<option value={30}>
+30 Minutes
+</option>
+
+<option value={60}>
+1 Hour
+</option>
+
+<option value={120}>
+2 Hours
+</option>
+
+</select>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+
+
+{/* FLOOR PLAN */}
+
+<HallLayout
+    hall={
+        hallLayouts[selectedHallId] || 
+        {windows:[]}
+    }
+>
+
+
+<div className="library-floor-plan">
+
+
+{
+Object.entries(tables).map(([tableNo,tableSeats])=>(
+
+<LibraryTable
+
+key={tableNo}
+
+tableNo={Number(tableNo)}
+
+seats={tableSeats}
+
+bookedMap={bookedMap}
+
+selectedSeat={selectedSeat}
+
+onSelect={handleSeatClick}
+
+hallPurpose={
+halls.find(
+h=>h.id===selectedHallId
+)?.purpose
+}
+
+/>
+
+))
+
+}
+
+
+</div>
+
+
+</HallLayout>
+
+
+
+
+{/* LEGEND */}
+
+<div className="seat-legend">
+
+
+<div className="legend-item">
+
+<span className="legend-color legend-available"></span>
+
+Available
+
+</div>
+
+
+
+<div className="legend-item">
+
+<span className="legend-color legend-selected"></span>
+
+Selected
+
+</div>
+
+
+
+<div className="legend-item">
+
+<span className="legend-color legend-booked"></span>
+
+Booked
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+{/* BOOKING SUMMARY */}
+
+<div className="booking-summary-box">
+
+
+<h3>
+Booking Summary
+</h3>
+
+
+
+<p>
+
+<strong>
+Hall:
+</strong>{" "}
+
+{
+currentBooking
+?
+currentBooking?.seat?.hall?.name || "-"
+:
+halls.find(
+h=>h.id===selectedHallId
+)?.name || "-"
+}
+
+</p>
+
+
+
+<p>
+
+<strong>
+Seat:
+</strong>{" "}
+
+{
+currentBooking
+?
+currentBooking?.seat?.seatNumber
+:
+selectedSeat
+?
+selectedSeat.seatNumber
+:
+"None Selected"
+}
+
+</p>
+
+
+
+
+<p>
+
+<strong>
+Date:
+</strong>{" "}
+
+{
+currentBooking
+?
+currentBooking.bookingDate
+:
+bookingDate
+}
+
+</p>
+
+
+
+
+<p>
+
+<strong>
+Time:
+</strong>{" "}
+
+{
+currentBooking
+?
+currentBooking.startTime
+:
+startTime
+}
+
+</p>
+
+
+
+
+<p>
+
+<strong>
+Duration:
+</strong>{" "}
+
+{
+currentBooking
+?
+currentBooking.durationMinutes
+:
+durationMinutes
+}
+
+{" Minutes"}
+
+</p>
+
+
+
+
+
+<div className="booking-buttons">
+
+
+
+<button
+
+className="book-now-btn"
+
+onClick={handleBooking}
+
+disabled={
+loading ||
+currentBooking !== null||
+!selectedSeat 
+
+}
+
+>
+
+{
+loading
+?
+"Booking..."
+:
+"Book Seat"
+}
+
+</button>
+
+
+
+
+<button
+className="book-now-btn"
+onClick={handleCancelBooking}
+disabled={
+ loading || currentBooking === null
+}
+>
+{
+loading
+? "Processing..."
+: "Unbook Seat"
+}
+</button>
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div> 
+{/* seat-shell end */}
+
+
+</div>
+{/* seat-page end */}
+
+
+
+
+{
+popupMessage && (
+
+<div
+
+className={`seat-popup ${
+popupMessage.toLowerCase().includes("success") ||
+popupMessage.toLowerCase().includes("selected")
+?
+"popup-success"
+:
+"popup-error"
+}`}
+
+>
+
+{popupMessage}
+
+</div>
+
+)
+
+}
+
+
+
+<Footer />
+
+
+</>
+
+);}
 export default Seat;
