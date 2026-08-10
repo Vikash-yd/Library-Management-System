@@ -139,19 +139,18 @@ public class BookReservationServices {
     // ==========================================
     // CURRENT BOOK RESERVATION
     // ==========================================
-    public BookReservation getCurrentReservation(UUID userId) {
+   // ==========================================
+// CURRENT BOOK RESERVATIONS
+// ==========================================
+public java.util.List<BookReservation> getCurrentReservation(UUID userId) {
 
-        expireOldReservations();
+    expireOldReservations();
 
-        return reservationRepo
-                .findByUser_IdAndStatus(
-                        userId,
-                        BookingStatus.ACTIVE
-                )
-                .stream()
-                .findFirst()
-                .orElse(null);
-    }
+    return reservationRepo.findByUser_IdAndStatus(
+            userId,
+            BookingStatus.ACTIVE
+    );
+}
 
     // ==========================================
     // RESERVATION HISTORY

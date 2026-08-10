@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import dashboardService from "../services/dashboardService";
 import QRCodeModal from "../components/QRCodeModal";
 import HistoryModal from "../components/HistoryModal";
 import Navbar from "../components/Navbar";
 import "./UserDashboard.css";
 
-
 const UserDashboard = () => {
+     const navigate = useNavigate();
 
 
     const user = JSON.parse(localStorage.getItem("user"));
@@ -447,6 +448,7 @@ const [cancelLoading, setCancelLoading] = useState(false);
 
 
     return (
+        <><Navbar/>
 
         <div className="dashboard-page">
 
@@ -506,125 +508,111 @@ const [cancelLoading, setCancelLoading] = useState(false);
 
             <div className="dashboard-content">
                 
-                {/* ================= BOOKS ================= */}
+               {/* ================= BOOKS ================= */}
 
+{activeTab === "BOOKS" && (
 
-                {activeTab === "BOOKS" && (
+    <div className="dashboard-section">
 
-                    <div className="dashboard-section">
+        <h2>
+            Current Book Reservations
+        </h2>
 
+        {dashboardData.currentBookReservations?.length > 0 ? (
 
-                        <h2>
-                            Current Book Reservation
-                        </h2>
+            dashboardData.currentBookReservations.map(
+                (reservation, index) => (
 
+                    <div
+                        className="dashboard-card"
+                        key={reservation.id || index}
+                    >
 
+                        <h3>
+                            {reservation.book?.title}
+                        </h3>
 
-                        {dashboardData.currentBookReservation ? (
+                        <p>
+                            <strong>
+                                Author:
+                            </strong>{" "}
+                            {reservation.book?.author}
+                        </p>
 
+                        <p>
+                            <strong>
+                                Status:
+                            </strong>{" "}
+                            {reservation.status}
+                        </p>
 
-                            <div className="dashboard-card">
+                        <p>
+                            <strong>
+                                Due Date:
+                            </strong>{" "}
+                            {reservation.dueDate}
+                        </p>
 
+                        <div className="dashboard-actions">
 
-                                <h3>
-                                    {
-                                    dashboardData.currentBookReservation.book?.title
-                                    }
-                                </h3>
+                            <button
+                                className="qr-btn"
+                                onClick={() =>
+                                    openQR(
+                                        "BOOK",
+                                        reservation
+                                    )
+                                }
+                            >
+                                📱 Show QR
+                            </button>
 
+                            <button
+                                className="qr-btn"
+                                onClick={() =>
+                                    navigate(
+                                        `/books/details/${reservation.book?.id}`
+                                    )
+                                }
+                            >
+                                👁️ Show Book
+                            </button>
 
-
-                                <p>
-                                    <strong>
-                                        Author:
-                                    </strong>{" "}
-                                    {
-                                    dashboardData.currentBookReservation.book?.author
-                                    }
-                                </p>
-
-
-
-                                <p>
-                                    <strong>
-                                        Status:
-                                    </strong>{" "}
-                                    {
-                                    dashboardData.currentBookReservation.status
-                                    }
-                                </p>
-
-
-
-                                <p>
-                                    <strong>
-                                        Due Date:
-                                    </strong>{" "}
-                                    {
-                                    dashboardData.currentBookReservation.dueDate
-                                    }
-                                </p>
-
-
-
-
-                                <div className="dashboard-actions">
-
-
-                                    <button
-                                        className="qr-btn"
-                                        onClick={() =>
-                                            openQR(
-                                                "BOOK",
-                                                dashboardData.currentBookReservation
-                                            )
-                                        }
-                                    >
-                                        📱 Show QR
-                                    </button>
-
-
-                                </div>
-
-
-                            </div>
-
-
-                        ) : (
-
-
-                            <div className="empty-card">
-
-                                No Active Book Reservation
-
-                            </div>
-
-
-                        )}
-
-
-
-                        <button
-                            className="history-btn section-history-btn"
-                            onClick={() =>
-                                openHistory(
-                                    "Book History",
-                                    dashboardData.bookHistory
-                                )
-                            }
-                        >
-
-                            📚 View Book History
-                            ({dashboardData.bookHistory.length})
-
-                        </button>
-
-
+                        </div>
 
                     </div>
 
-                )}
+                )
+            )
 
+        ) : (
+
+            <div className="empty-card">
+
+                No Active Book Reservations
+
+            </div>
+
+        )}
+
+        <button
+            className="history-btn section-history-btn"
+            onClick={() =>
+                openHistory(
+                    "Book History",
+                    dashboardData.bookHistory
+                )
+            }
+        >
+
+            📚 View Book History
+            ({dashboardData.bookHistory.length})
+
+        </button>
+
+    </div>
+
+)}
 
 
 
@@ -810,6 +798,12 @@ const [cancelLoading, setCancelLoading] = useState(false);
                                                 📱 Show QR
 
                                             </button>
+                                            <button
+  className="qr-btn"
+  onClick={() => navigate(`/event/${event.event?.id}`)}
+>
+  👁️ Show Event
+</button>
 
 
                                         </div>
@@ -915,7 +909,7 @@ const [cancelLoading, setCancelLoading] = useState(false);
 
         </div>
 
-
+</>
     );
 
 };

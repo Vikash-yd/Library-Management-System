@@ -14,6 +14,7 @@ function LongueDetails() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    console.log("LOUNGE ID:", id);
 
     const fetchData = async () => {
       try {

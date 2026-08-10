@@ -3,9 +3,9 @@ spring:
     name: backend
 
   datasource:
-      url: jdbc:mysql://thomas.proxy.rlwy.net:30933/railway?useSSL=false&allowPublicKeyRetrieval=true
-      username: root
-      password: pvQOwOFwsaAFNVPQEGdANfudlcoZYhPR
+      url: jdbc:mysql://4Bo7NN5vsxU4aLD.root:n5cj8nM1Fe52WK7r@gateway01.ap-southeast-1.prod.aws.tidbcloud.com:4000/soulspace
+      username: 4Bo7NN5vsxU4aLD.root
+      password: n5cj8nM1Fe52WK7r
       driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:

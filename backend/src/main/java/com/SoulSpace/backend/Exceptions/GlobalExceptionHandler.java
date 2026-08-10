@@ -31,21 +31,21 @@ public class GlobalExceptionHandler {
     // ==========================================
     // UNEXPECTED EXCEPTIONS
     // ==========================================
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> handleException(
-            Exception ex
-    ) {
+   @ExceptionHandler(Exception.class)
+public ResponseEntity<ErrorResponse> handleException(Exception ex) {
 
-        ErrorResponse error = new ErrorResponse(
-                LocalDateTime.now(),
-                HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(),
-                "Something went wrong. Please try again."
-        );
+    ex.printStackTrace();
 
-        return new ResponseEntity<>(
-                error,
-                HttpStatus.INTERNAL_SERVER_ERROR
-        );
-    }
+    ErrorResponse error = new ErrorResponse(
+            LocalDateTime.now(),
+            HttpStatus.INTERNAL_SERVER_ERROR.value(),
+            HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(),
+            "Something went wrong. Please try again."
+    );
+
+    return new ResponseEntity<>(
+            error,
+            HttpStatus.INTERNAL_SERVER_ERROR
+    );
+}
 }

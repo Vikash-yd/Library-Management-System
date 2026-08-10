@@ -1,4 +1,4 @@
-    package com.SoulSpace.backend.DTO;
+    package com.SoulSpace.backend.Dtos;
 
     import com.SoulSpace.backend.Models.BookReservation;
     import com.SoulSpace.backend.Models.LoungeEventRegistration;
@@ -16,7 +16,7 @@
     @Builder
     public class DashboardResponse {
 
-        private BookReservation currentBookReservation;
+       private List<BookReservation> currentBookReservations;
         private List<BookReservation> bookHistory;
 
         private SeatBooking currentSeatBooking;

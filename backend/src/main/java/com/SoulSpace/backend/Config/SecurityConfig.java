@@ -52,7 +52,9 @@ public PasswordEncoder passwordEncoder() {
         CorsConfiguration config = new CorsConfiguration();
 
         // Frontend URL
-        config.setAllowedOrigins(List.of("http://localhost:5173"));
+        config.setAllowedOrigins(List.of(
+        "http://localhost:5173",
+        "http://192.168.1.104:5173"));
 
         // Allowed methods
         config.setAllowedMethods(List.of(

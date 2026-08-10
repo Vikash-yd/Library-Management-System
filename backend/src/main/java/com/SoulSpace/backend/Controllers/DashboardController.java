@@ -22,12 +22,12 @@ public class DashboardController {
 
     // ================= BOOKS =================
 
-    @GetMapping("/{userId}/books")
-    public BookReservation getCurrentBook(
-            @PathVariable UUID userId
-    ) {
-        return dashboardService.getCurrentBook(userId);
-    }
+   @GetMapping("\"/{userId}/books\"")
+public List<BookReservation> getCurrentBooks(
+        @PathVariable UUID userId
+) {
+    return dashboardService.getCurrentBooks(userId);
+}
 
     @GetMapping("/{userId}/books/history")
     public List<BookReservation> getBookHistory(

@@ -51,15 +51,12 @@ public class BookReservationController {
     // ==========================================
     // CURRENT RESERVATION
     // ==========================================
-    @GetMapping("/current/{userId}")
-    public BookReservation getCurrentReservation(
-            @PathVariable UUID userId
-    ) {
-
-        return reservationServices.getCurrentReservation(
-                userId
-        );
-    }
+   @GetMapping("/current/{userId}")
+public List<BookReservation> getCurrentReservations(
+        @PathVariable UUID userId
+) {
+    return reservationServices.getCurrentReservation(userId);
+}
 
     // ==========================================
     // RESERVATION HISTORY

@@ -27,9 +27,9 @@ public class DashboardServices {
 
     // ================= BOOKS =================
 
-    public BookReservation getCurrentBook(UUID userId) {
-        return bookReservationServices.getCurrentReservation(userId);
-    }
+    public List<BookReservation> getCurrentBooks(UUID userId) {
+    return bookReservationServices.getCurrentReservation(userId);
+}
 
     public List<BookReservation> getBookHistory(UUID userId) {
         return bookReservationServices.getReservationHistory(userId);
