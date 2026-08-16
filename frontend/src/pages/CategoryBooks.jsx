@@ -4,14 +4,29 @@ import "./CategoryBooks.css";
 
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import booksData from "../assets/bookData.js";
+import academicImg from "../assets/academic.png";
+import romanticImg from "../assets/romantic.png";
+import selfcareImg from "../assets/selfcare.png";
+import mysteryImg from "../assets/mystery.png";
+import scifiImg from "../assets/scifi.png";
+import horrorImg from "../assets/horror.png";
+import comicsImg from "../assets/comics.png";
 
 
 function CategoryBooks() {
 
   const { category } = useParams();
-
   const navigate = useNavigate();
+
+const categoryImages = {
+  academic: academicImg,
+  romantic: romanticImg,
+  selfcare: selfcareImg,
+  mystery: mysteryImg,
+  scifi: scifiImg,
+  horror: horrorImg,
+  comics: comicsImg,
+};
  useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -88,10 +103,11 @@ function CategoryBooks() {
                 <div className="book-left">
 
                   <img
-                    src={book.coverImage}
-                    alt={book.title}
-                    className="book-img"
-                  />
+  src={categoryImages[String(book.category).toLowerCase()]}
+  alt={book.title}
+  className="book-img"
+/>
+
 
                 </div>
 

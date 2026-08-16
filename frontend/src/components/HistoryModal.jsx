@@ -9,15 +9,42 @@ const HistoryModal = ({
 
     if (!open) return null;
 
+
+    const getStatusClass = (status) => {
+
+        switch(status) {
+
+            case "ACTIVE":
+                return "status-active";
+
+            case "CANCELLED":
+                return "status-cancelled";
+
+            case "COMPLETED":
+                return "status-completed";
+
+            case "EXPIRED":
+                return "status-expired";
+
+            default:
+                return "";
+
+        }
+
+    };
+
+
     return (
 
         <div className="history-overlay">
 
             <div className="history-modal">
 
+
                 <div className="history-header">
 
                     <h2>{title}</h2>
+
 
                     <button
                         className="history-close"
@@ -28,171 +55,264 @@ const HistoryModal = ({
 
                 </div>
 
+
+
                 <div className="history-body">
 
-                    {history.length > 0 ? (
 
-                        history.map((item) => (
+                {history.length > 0 ? (
 
-                            <div
-                                key={item.id}
-                                className="history-card"
-                            >
 
-                                {/* BOOK */}
+                    history.map((item) => (
 
-                                {item.book && (
 
-                                    <>
+                        <div
+                            key={item.id}
+                            className="history-card"
+                        >
 
-                                        <h3>{item.book.title}</h3>
 
-                                        <p>
+                        {/* BOOK */}
 
-                                            <strong>Author:</strong>{" "}
+                        {item.book && (
 
-                                            {item.book.author}
+                            <>
 
-                                        </p>
+                            <div className="history-title">
 
-                                        <p>
-
-                                            <strong>Status:</strong>{" "}
-
-                                            {item.status}
-
-                                        </p>
-
-                                        <p>
-
-                                            <strong>Borrowed:</strong>{" "}
-
-                                            {item.borrowedAt}
-
-                                        </p>
-
-                                        <p>
-
-                                            <strong>Returned:</strong>{" "}
-
-                                            {item.returnedAt || "Not Returned"}
-
-                                        </p>
-
-                                    </>
-
-                                )}
-
-                                {/* SEAT */}
-
-                                {item.seat && (
-
-                                    <>
-
-                                        <h3>
-
-                                            Seat {item.seat.seatNumber}
-
-                                        </h3>
-
-                                        <p>
-
-                                            <strong>Date:</strong>{" "}
-
-                                            {item.bookingDate}
-
-                                        </p>
-
-                                        <p>
-
-                                            <strong>Time:</strong>{" "}
-
-                                            {item.startTime} - {item.endTime}
-
-                                        </p>
-
-                                        <p>
-
-                                            <strong>Status:</strong>{" "}
-
-                                            {item.status}
-
-                                        </p>
-
-                                    </>
-
-                                )}
-
-                                {/* EVENT */}
-
-                                {item.event && (
-
-                                    <>
-
-                                        <h3>
-
-                                            {item.event.title}
-
-                                        </h3>
-
-                                        <p>
-
-                                            <strong>Date:</strong>{" "}
-
-                                            {item.event.eventDate}
-
-                                        </p>
-
-                                        <p>
-
-                                            <strong>Venue:</strong>{" "}
-
-                                            {item.event.venueName}
-
-                                        </p>
-
-                                        <p>
-
-                                            <strong>Status:</strong>{" "}
-
-                                            {item.status}
-
-                                        </p>
-
-                                        <p>
-
-                                            <strong>Registered:</strong>{" "}
-
-                                            {item.registeredAt}
-
-                                        </p>
-
-                                    </>
-
-                                )}
+                                {item.book.title}
 
                             </div>
 
-                        ))
 
-                    ) : (
+                            <div className="history-details">
 
-                        <div className="history-empty">
 
-                            No History Found
+                                <p>
+                                    <strong>Author</strong>
+                                    <span>
+                                        {item.book.author}
+                                    </span>
+                                </p>
+
+
+                                <p>
+                                    <strong>Status</strong>
+
+                                    <span className={
+                                        `status-badge ${getStatusClass(item.status)}`
+                                    }>
+                                        {item.status}
+                                    </span>
+
+                                </p>
+
+
+                                <p>
+                                    <strong>Borrowed</strong>
+                                    <span>
+                                        {item.borrowedAt}
+                                    </span>
+                                </p>
+
+
+                                <p>
+                                    <strong>Returned</strong>
+                                    <span>
+                                    {
+                                    item.returnedAt || "Not Returned"
+                                    }
+                                    </span>
+                                </p>
+
+
+                            </div>
+
+                            </>
+
+                        )}
+
+
+
+
+                        {/* SEAT */}
+
+
+                        {item.seat && (
+
+                            <>
+
+
+                            <div className="history-title">
+
+                                 Seat {item.seat.seatNumber}
+
+                            </div>
+
+
+
+                            <div className="history-details">
+
+
+                                <p>
+                                    <strong>Date</strong>
+
+                                    <span>
+                                        {item.bookingDate}
+                                    </span>
+
+                                </p>
+
+
+
+                                <p>
+
+                                    <strong>Time</strong>
+
+                                    <span>
+                                    {item.startTime} - {item.endTime}
+                                    </span>
+
+                                </p>
+
+
+
+                                <p>
+
+                                    <strong>Status</strong>
+
+                                    <span className={
+                                        `status-badge ${getStatusClass(item.status)}`
+                                    }>
+                                        {item.status}
+                                    </span>
+
+                                </p>
+
+
+                            </div>
+
+
+                            </>
+
+                        )}
+
+
+
+
+
+
+                        {/* EVENT */}
+
+
+                        {item.event && (
+
+                            <>
+
+
+                            <div className="history-title">
+
+                                {item.event.title}
+
+                            </div>
+
+
+
+                            <div className="history-details">
+
+
+                                <p>
+
+                                    <strong>Date</strong>
+
+                                    <span>
+                                        {item.event.eventDate}
+                                    </span>
+
+                                </p>
+
+
+
+                                <p>
+
+                                    <strong>Venue</strong>
+
+                                    <span>
+                                        {item.event.venueName}
+                                    </span>
+
+                                </p>
+
+
+
+                                <p>
+
+                                    <strong>Status</strong>
+
+                                    <span className={
+                                        `status-badge ${getStatusClass(item.status)}`
+                                    }>
+                                        {item.status}
+                                    </span>
+
+                                </p>
+                                <p>
+    <strong>Registered</strong>
+
+    <span>
+        {item.registeredAt}
+    </span>
+</p>
+
+
+
+                                
+
+        
+
+    
+
+
+                            </div>
+
+
+                            </>
+
+                        )}
+
+
 
                         </div>
 
-                    )}
+
+                    ))
+
+
+                ) : (
+
+
+                    <div className="history-empty">
+
+                        No History Found
+
+                    </div>
+
+
+                )}
+
+
 
                 </div>
 
+
             </div>
+
 
         </div>
 
     );
 
 };
+
 
 export default HistoryModal;

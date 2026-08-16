@@ -37,7 +37,7 @@ function App() {
           </div>
 
           <div className="cta-card" onClick={scrollToCards}>
-            <span>Find Your Quiet Space ⬇️</span>
+            <span>Find Your Quiet Space </span>
           </div>
         </div>
       </div>

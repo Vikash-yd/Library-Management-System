@@ -22,7 +22,7 @@ public class DashboardController {
 
     // ================= BOOKS =================
 
-   @GetMapping("\"/{userId}/books\"")
+   @GetMapping("/{userId}/books")
 public List<BookReservation> getCurrentBooks(
         @PathVariable UUID userId
 ) {

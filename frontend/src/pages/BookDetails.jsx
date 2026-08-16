@@ -4,6 +4,13 @@ import "./BookDetails.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import bookReservationService from "../services/bookReservationService";
+import academicImg from "../assets/academic.png";
+import romanticImg from "../assets/romantic.png";
+import selfcareImg from "../assets/selfcare.png";
+import mysteryImg from "../assets/mystery.png";
+import scifiImg from "../assets/scifi.png";
+import horrorImg from "../assets/horror.png";
+import comicsImg from "../assets/comics.png";
 
 function BookDetails() {
   const { id } = useParams();
@@ -19,6 +26,15 @@ function BookDetails() {
   // Bottom-right toast
   const [popupMessage, setPopupMessage] = useState("");
   const [popupType, setPopupType] = useState("success");
+  const categoryImages = {
+  academic: academicImg,
+  romantic: romanticImg,
+  selfcare: selfcareImg,
+  mystery: mysteryImg,
+  scifi: scifiImg,
+  horror: horrorImg,
+  comics: comicsImg,
+};
 
   // ===========================
   // LOAD BOOK
@@ -175,11 +191,11 @@ function BookDetails() {
         <div className="book-details-card">
 
           <div className="details-image-section">
-            <img
-              src={book.coverImageUrl}
-              alt={book.title}
-              className="details-image"
-            />
+             <img
+  src={categoryImages[String(book.category).toLowerCase()]}
+  alt={book.title}
+  className="book-details-img"
+/>
           </div>
 
           <div className="details-content">

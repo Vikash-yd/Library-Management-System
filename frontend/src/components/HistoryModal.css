@@ -3,161 +3,169 @@
 .history-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.65);
+    background: rgba(0, 10, 25, 0.85);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
 }
 
+
 /* ================= MODAL ================= */
 
 .history-modal {
-    width: 720px;
-    max-width: 95%;
+    width: 760px;
+    max-width: 92%;
     max-height: 82vh;
 
-    background: #111827;
-    color: #fff;
+    background: #06182d !important;
 
-    border-radius: 18px;
-
+    border-radius: 16px;
     overflow: hidden;
 
-    box-shadow: 0 20px 60px rgba(0,0,0,.45);
-
-    animation: historyPop .25s ease;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.8);
 }
+
 
 /* ================= HEADER ================= */
 
 .history-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 
-    padding: 20px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 
-    border-bottom: 1px solid rgba(255,255,255,.08);
+    padding:20px 25px;
 
-    background: #1f2937;
+    background:#09233f !important;
 }
+
 
 .history-header h2 {
-    margin: 0;
-    font-size: 1.45rem;
-    color: #ffffff;
+
+    margin:0;
+
+    color:#ffffff !important;
+
+    font-size:22px;
 }
+
+
 
 /* ================= CLOSE ================= */
 
 .history-close {
-    width: 40px;
-    height: 40px;
 
-    border: none;
-    border-radius: 50%;
+    width:34px;
+    height:34px;
 
-    cursor: pointer;
+    border:none;
+    border-radius:50%;
 
-    font-size: 20px;
+    background:#f97316 !important;
 
-    background: #ef4444;
-    color: white;
+    color:white !important;
 
-    transition: .25s;
 }
 
-.history-close:hover {
-    transform: rotate(90deg);
-    background: #dc2626;
-}
+
 
 /* ================= BODY ================= */
 
 .history-body {
-    padding: 20px;
-    overflow-y: auto;
-    max-height: 62vh;
+
+    padding:22px;
+
+    background:#06182d !important;
+
 }
+
+
 
 /* ================= CARD ================= */
 
 .history-card {
-    background: #1f2937;
 
-    border-left: 5px solid #3b82f6;
+    background:#0b2945 !important;
 
-    border-radius: 12px;
+    padding:18px;
 
-    padding: 18px;
+    margin-bottom:15px;
 
-    margin-bottom: 16px;
+    border-radius:12px;
 
-    transition: .25s;
 }
 
-.history-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 18px rgba(0,0,0,.35);
-}
+
+
+/* ================= CARD TITLE ================= */
 
 .history-card h3 {
-    margin: 0 0 12px;
-    color: #60a5fa;
-    font-size: 1.2rem;
+
+    color:#38bdf8 !important;
+
+    margin-bottom:15px;
+
 }
+
+
+
+/* ================= INFORMATION TEXT ================= */
 
 .history-card p {
-    margin: 7px 0;
-    color: #d1d5db;
-    line-height: 1.5;
+
+    background:transparent !important;
+
+    color:#dbeafe !important;
+
+    margin:10px 0;
+
+    font-size:15px;
+
+    text-align:left;
+
 }
+
+
 
 .history-card strong {
-    color: white;
+
+    color:#ffffff !important;
+
+    display:inline-block;
+
+    width:120px;
+
 }
 
-/* ================= EMPTY ================= */
+
+
+/* STATUS */
+
+.history-card p:last-child {
+
+    color:#fb923c !important;
+
+}
+
+
+
+/* EMPTY */
 
 .history-empty {
-    text-align: center;
-    padding: 45px;
-    font-size: 18px;
-    color: #9ca3af;
+
+    color:#cbd5e1 !important;
+
 }
 
-/* ================= SCROLL ================= */
 
-.history-body::-webkit-scrollbar {
-    width: 8px;
-}
 
-.history-body::-webkit-scrollbar-track {
-    background: transparent;
-}
+/* REMOVE ANY WHITE EFFECT */
 
-.history-body::-webkit-scrollbar-thumb {
-    background: #475569;
-    border-radius: 20px;
-}
+.history-card *,
+.history-modal *,
+.history-body * {
 
-.history-body::-webkit-scrollbar-thumb:hover {
-    background: #64748b;
-}
-
-/* ================= ANIMATION ================= */
-
-@keyframes historyPop {
-
-    from {
-        opacity: 0;
-        transform: scale(.92);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+    text-shadow:none !important;
 
 }

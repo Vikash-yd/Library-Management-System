@@ -5,6 +5,7 @@ import QRCodeModal from "../components/QRCodeModal";
 import HistoryModal from "../components/HistoryModal";
 import Navbar from "../components/Navbar";
 import "./UserDashboard.css";
+import bookReservationService from "../services/bookReservationService";
 
 const UserDashboard = () => {
      const navigate = useNavigate();
@@ -48,20 +49,13 @@ const [cancelLoading, setCancelLoading] = useState(false);
 
 
     const [dashboardData, setDashboardData] = useState({
-
-        currentBookReservation: null,
-
-        bookHistory: [],
-
-        currentSeatBooking: null,
-
-        seatHistory: [],
-
-        eventRegistrations: [],
-
-        eventHistory: []
-
-    });
+    currentBookReservations: [],
+    bookHistory: [],
+    currentSeatBooking: null,
+    seatHistory: [],
+    eventRegistrations: [],
+    eventHistory: []
+});
 
 
 
@@ -87,114 +81,65 @@ const [cancelLoading, setCancelLoading] = useState(false);
     // ================= BOOKS =================
 
 
-    const loadBooks = async () => {
+     const loadBooks = async () => {
+    try {
+        setLoading(true);
 
-        try {
+        const [currentBooks, bookHistory] = await Promise.all([
+            bookReservationService.getCurrentReservations(user.id),
+            bookReservationService.getReservationHistory(user.id)
+        ]);
 
-            setLoading(true);
+        console.log("CURRENT BOOKS:", currentBooks);
+        console.log("BOOK HISTORY:", bookHistory);
 
+        setDashboardData(prev => ({
+            ...prev,
+            currentBookReservations: Array.isArray(currentBooks)
+                ? currentBooks
+                : [],
+            bookHistory: Array.isArray(bookHistory)
+                ? bookHistory
+                : []
+        }));
 
-            const response =
-                await dashboardService.getBooks(user.id);
-
-
-
-            console.log("Books:", response.data);
-
-
-
-            setDashboardData(prev => ({
-
-                ...prev,
-
-                currentBookReservation: response.data,
-
-                bookHistory: response.data.bookHistory ?? []
-
-            }));
-
-
-        } catch(error) {
-
-
-            console.error(
-                "Book API Error:",
-                error
-            );
-
-
-        } finally {
-
-
-            setLoading(false);
-
-
-        }
-
-    };
-
-
-
+    } catch (error) {
+        console.error("Book API Error:", error);
+    } finally {
+        setLoading(false);
+    }
+};
 
 
     // ================= SEATS =================
 
 
     const loadSeats = async () => {
+    try {
+        setLoading(true);
 
+        const [currentResponse, historyResponse] = await Promise.all([
+            dashboardService.getSeats(user.id),
+            dashboardService.getSeatHistory(user.id)
+        ]);
 
-        try {
+        console.log("Current Seat:", currentResponse.data);
+        console.log("Seat History:", historyResponse.data);
 
+        setDashboardData(prev => ({
+            ...prev,
+            currentSeatBooking: currentResponse.data,
+            seatHistory: Array.isArray(historyResponse.data)
+                ? historyResponse.data
+                : []
+        }));
 
-            setLoading(true);
-
-
-
-            const response =
-                await dashboardService.getSeats(user.id);
-
-
-
-            console.log(
-                "Seats:",
-                response.data
-            );
-
-
-
-            setDashboardData(prev => ({
-
-                ...prev,
-
-                currentSeatBooking: response.data,
-
-                seatHistory:
-                    response.data.seatHistory ?? []
-
-            }));
-
-
-
-        } catch(error) {
-
-
-            console.error(
-                "Seat API Error:",
-                error
-            );
-
-
-        } finally {
-
-
-            setLoading(false);
-
-
-        }
-
-
-    };
-
+    } catch (error) {
+        console.error("Seat API Error:", error);
+    } finally {
+        setLoading(false);
+    }
+};
 
 
 
@@ -478,7 +423,7 @@ const [cancelLoading, setCancelLoading] = useState(false);
                     onClick={() => handleTabChange("BOOKS")}
                 >
 
-                    📚 Books
+                     Books
 
                 </button>
 
@@ -488,7 +433,7 @@ const [cancelLoading, setCancelLoading] = useState(false);
                     onClick={() => handleTabChange("SEATS")}
                 >
 
-                    🪑 Seats
+                     Seats
 
                 </button>
 
@@ -498,7 +443,7 @@ const [cancelLoading, setCancelLoading] = useState(false);
                     onClick={() => handleTabChange("EVENTS")}
                 >
 
-                    🎉 Events
+                     Events
 
                 </button>
 
